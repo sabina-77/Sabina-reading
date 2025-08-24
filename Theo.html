@@ -68,13 +68,13 @@
 
         .telegram-link {
             color: #3e3e3e;
-    text-decoration: none;
+            text-decoration: none;
     font-weight: 700;
-    font-size: 16px;
+            font-size: 16px;
     display: flex
 ;
-    align-items: center;
-    gap: 8px;
+            align-items: center;
+            gap: 8px;
     padding: 6px 12px;
     border: 2px solid #3e3e3e;
     border-radius: 9999px;
@@ -217,14 +217,42 @@
         }
 
         .resizer {
-            width: 10px;
+            position: relative;
+            background: transparent;
             cursor: col-resize;
-            background-color: #f0f0f0;
-            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="30" viewBox="0 0 10 30"><path d="M4 11h2v2H4zM4 15h2v2H4zM4 19h2v2H4z" fill="%23888"/></svg>');
-            background-repeat: no-repeat;
-            background-position: center;
             flex-shrink: 0;
             flex-grow: 0;
+            z-index: 5;
+            width: 16px; /* Larger hit area so users don't need to be pixel-perfect */
+            touch-action: none; /* Better touch dragging */
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        .resizer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 3px; /* Slightly thicker visual line */
+            transform: translateX(-50%);
+            background-color: #3e3e3e;
+        }
+        .resizer::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 36px; /* larger grab handle */
+            height: 36px;
+            background-color: #ffffff;
+            border: 2px solid #3e3e3e;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="%233e3e3e" fill="%233e3e3e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4"/><path d="M16 8l4 4-4 4"/><line x1="4" y1="12" x2="20" y2="12"/></svg>');
+            background-repeat: no-repeat;
+            background-size: 60% 60%;
+            background-position: center;
+            pointer-events: none;
         }
 
         /* Left Panel */
@@ -516,80 +544,154 @@
             .attemptedCount {
                 display: none;
             }
+            
+            /* Mobile navigation improvements */
+            .footer__questionWrapper___1tZ46 {
+                margin-right: 10px;
+            }
+            
+            .footer__questionNo___3WNct {
+                padding: 12px 18px; /* Larger touch target */
+                min-width: 44px; /* Minimum touch target size */
+                min-height: 44px;
+                font-size: 18px; /* Larger text for mobile */
+            }
+            
+            .subQuestion {
+                width: 44px; /* Larger touch target */
+                height: 44px;
+                font-size: 16px;
+            }
+            
+            /* Mobile passage panel improvements */
+            .passage-panel {
+                padding: 15px;
+                font-size: 16px; /* Better readability on mobile */
+                line-height: 1.6;
+            }
+            
+            .questions-panel {
+                padding: 15px 15px 120px; /* More bottom padding for mobile */
+            }
+            
+            /* Mobile question improvements */
+            .tf-option, .multi-choice-option {
+                padding: 12px 15px;
+                margin: 8px 0;
+                min-height: 44px; /* Touch-friendly */
+                display: flex;
+                align-items: center;
+            }
+            
+            .tf-option input[type="radio"], .multi-choice-option input[type="radio"] {
+                width: 20px;
+                height: 20px;
+                margin-right: 12px;
+            }
+            
+            /* Mobile input improvements */
+            input[type="text"], select {
+                padding: 12px 15px;
+                font-size: 16px; /* Prevents zoom on iOS */
+                min-height: 44px;
+            }
+            
+            /* Mobile button improvements */
+            .check-answers-btn, .deliver-button {
+                padding: 15px 25px;
+                font-size: 18px;
+                min-height: 50px;
+                width: 100%; /* Full width on mobile */
+                margin: 10px 0;
+            }
+            
+            /* Mobile resizer improvements */
+            .resizer {
+                width: 20px; /* Larger touch area */
+            }
+            
+            .resizer::after {
+                width: 44px; /* Larger grab handle for mobile */
+                height: 44px;
+            }
+            
+            /* Mobile drop zone improvements */
+            .drop-zone {
+                min-height: 44px;
+                padding: 10px;
+            }
+            
+            /* Mobile drag item improvements */
+            .drag-item {
+                min-height: 44px;
+                padding: 10px;
+                font-size: 16px;
+            }
+            
+            /* Mobile table improvements */
+            .matching-table td {
+                padding: 12px 8px;
+                min-height: 44px;
+            }
+            
+            .clickable-cell {
+                min-height: 44px;
+                padding: 10px;
+            }
+            
+            /* Mobile header improvements */
+            .header {
+                padding: 10px 15px;
+                height: 70px; /* Taller for mobile */
+            }
+            
+            .timer-container {
+                font-size: 18px;
+            }
+            
+            .telegram-link {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            
+            /* Mobile question navigation */
+            .question {
+                margin-bottom: 25px;
+            }
+            
+            .question-prompt {
+                margin-bottom: 20px;
+            }
+            
+            .question-prompt p {
+                font-size: 16px;
+                line-height: 1.5;
+            }
         }
-
-        .footer__questionWrapper___1tZ46.selected .attemptedCount {
-            display: none;
-        }
-
-        .footer__subquestionWrapper___9GgoP {
-            display: none;
-            gap: 2px;
-            margin-left: 10px;
-        }
-
-        .footer__questionWrapper___1tZ46.selected .footer__subquestionWrapper___9GgoP {
-            display: flex;
-        }
-
-        .subQuestion {
-            width: 32px;
-            height: 32px;
-            border: 1px solid #ccc;
-            background: white;
-            color: #333;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-            border-radius: 2px;
-        }
-
-        .subQuestion.answered {
-            background-color: #e9ecef;
-            border-color: #ddd;
-        }
-        .subQuestion.correct {
-            background-color: #28a745;
-            color: white;
-            border-color: #28a745;
-        }
-        .subQuestion.incorrect {
-            background-color: #dc3545;
-            color: white;
-            border-color: #dc3545;
-        }
-
-        .subQuestion:hover {
-            background-color: #f0f0f0;
-            border-color: #999;
-        }
-
-        .subQuestion.active {
-            background-color: #4a90e2;
-            color: white;
-            border-color: #4a90e2;
-        }
-
-        .subQuestion.completed {
-            background-color: #28a745;
-            color: white;
-            border-color: #28a745;
-        }
-
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
+        
+        /* Additional mobile optimizations */
+        @media (max-width: 480px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .passage-panel, .questions-panel {
+                width: 100%;
+                min-width: auto;
+            }
+            
+            .resizer {
+                display: none; /* Hide resizer on very small screens */
+            }
+            
+            .footer__questionWrapper___1tZ46 {
+                margin-right: 5px;
+            }
+            
+            .footer__questionNo___3WNct {
+                padding: 10px 12px;
+                font-size: 16px;
+            }
         }
 
         .footer__deliverButton___3FM07 {
@@ -812,14 +914,16 @@
             border: 2px dashed #aaa;
             border-radius: 4px;
             width: 50%;
+            height: 25px;
             margin-top: 19px;
             margin-bottom: 5px;
             transition: background-color 0.2s, border-color 0.2s;
-            padding: 0.5px;
+            padding: 0.5px 5px;
             display: flex;
             align-items: center;
-            justify-content: center;
             position: relative;
+            color: #b3b3b3;
+            font-weight: 600;
         }
         .drop-zone.drag-over {
             background-color: #e6f4ff;
@@ -1178,7 +1282,7 @@
             align-items: center;
             justify-content: center;
             vertical-align: middle;
-            min-width:200px;
+            max-width:200px;
             height: 25px;
             border: 2px dashed #999;
             border-radius: 4px;
@@ -1253,15 +1357,13 @@
         }
         /* MCQ number badge: style first strong within prompt */
         .multi-choice-question .question-prompt p > strong:first-child {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 24px;
-            padding: 2px 6px;
-            margin-right: 8px;
-            border: 1px solid #d0d7e2;
-            border-radius: 6px;
-            background: #fff;
+            border: 2px solid #ccc;
+    padding: 2px 8px;
+    margin-right: 10px;
+    border-radius: 3px;
+    font-weight: bold;
+    transition: border-color 0.3s;
+    display: inline-block;
         }
         /* Active question blue outline for MCQ (clears when navigating away) */
         .multi-choice-question.active-question .question-prompt p > strong:first-child {
@@ -1430,7 +1532,7 @@
         }
         .result-row {
             display: grid;
-            grid-template-columns: 56px 1fr 1fr 120px;
+            grid-template-columns: 56px 1fr 1fr;
             gap: 12px;
             padding: 10px 8px;
             border-bottom: 1px solid #eef2f7;
@@ -1469,24 +1571,6 @@
             border: 1px solid #a7f3d0;
             padding: 4px 8px;
             border-radius: 6px;
-        }
-        .status-badge {
-            justify-self: end;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 12px;
-            font-weight: 700;
-            border: 1px solid transparent;
-        }
-        .status-badge.ok {
-            background: #ecfdf5;
-            color: #065f46;
-            border-color: #a7f3d0;
-        }
-        .status-badge.bad {
-            background: #fff5f5;
-            color: #7f1d1d;
-            border-color: #f5c6cb;
         }
         .correct-answer-display {
             font-weight: bold;
@@ -1677,6 +1761,237 @@
         #show-explanation-btn:hover {
             background-color: #357abd;
         }
+
+        @media (max-width: 768px) {
+            .attemptedCount {
+                display: none;
+            }
+        }
+
+        .footer__questionWrapper___1tZ46.selected .attemptedCount {
+            display: none;
+        }
+
+        .footer__subquestionWrapper___9GgoP {
+            display: none;
+            gap: 2px;
+            margin-left: 10px;
+        }
+
+        .footer__questionWrapper___1tZ46.selected .footer__subquestionWrapper___9GgoP {
+            display: flex;
+        }
+
+        .subQuestion {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ccc;
+            background: white;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            border-radius: 2px;
+        }
+
+        .subQuestion.answered {
+            background-color: #e9ecef;
+            border-color: #ddd;
+        }
+        .subQuestion.correct {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+        .subQuestion.incorrect {
+            background-color: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+
+        .subQuestion:hover {
+            background-color: #f0f0f0;
+            border-color: #999;
+        }
+
+        .subQuestion.active {
+            background-color: #4a90e2;
+            color: white;
+            border-color: #4a90e2;
+        }
+
+        .subQuestion.completed {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Mobile-specific improvements */
+        @media (max-width: 768px) {
+            /* Mobile navigation improvements */
+            .footer__questionWrapper___1tZ46 {
+                margin-right: 10px;
+            }
+            
+            .footer__questionNo___3WNct {
+                padding: 12px 18px; /* Larger touch target */
+                min-width: 44px; /* Minimum touch target size */
+                min-height: 44px;
+                font-size: 18px; /* Larger text for mobile */
+            }
+            
+            .subQuestion {
+                width: 44px; /* Larger touch target */
+                height: 44px;
+                font-size: 16px;
+            }
+            
+            /* Mobile passage panel improvements */
+            .passage-panel {
+                padding: 15px;
+                font-size: 16px; /* Better readability on mobile */
+                line-height: 1.6;
+            }
+            
+            .questions-panel {
+                padding: 15px 15px 120px; /* More bottom padding for mobile */
+            }
+            
+            /* Mobile question improvements */
+            .tf-option, .multi-choice-option {
+                padding: 12px 15px;
+                margin: 8px 0;
+                min-height: 44px; /* Touch-friendly */
+                display: flex;
+                align-items: center;
+            }
+            
+            .tf-option input[type="radio"], .multi-choice-option input[type="radio"] {
+                width: 20px;
+                height: 20px;
+                margin-right: 12px;
+            }
+            
+            /* Mobile input improvements */
+            input[type="text"], select {
+                padding: 12px 15px;
+                font-size: 16px; /* Prevents zoom on iOS */
+                min-height: 44px;
+            }
+            
+            /* Mobile button improvements */
+            .check-answers-btn, .deliver-button {
+                padding: 15px 25px;
+                font-size: 18px;
+                min-height: 50px;
+                width: 100%; /* Full width on mobile */
+                margin: 10px 0;
+            }
+            
+            /* Mobile resizer improvements */
+            .resizer {
+                width: 20px; /* Larger touch area */
+            }
+            
+            .resizer::after {
+                width: 44px; /* Larger grab handle for mobile */
+                height: 44px;
+            }
+            
+            /* Mobile drop zone improvements */
+            .drop-zone {
+                min-height: 44px;
+                padding: 10px;
+            }
+            
+            /* Mobile drag item improvements */
+            .drag-item {
+                min-height: 44px;
+                padding: 10px;
+                font-size: 16px;
+            }
+            
+            /* Mobile table improvements */
+            .matching-table td {
+                padding: 12px 8px;
+                min-height: 44px;
+            }
+            
+            .clickable-cell {
+                min-height: 44px;
+                padding: 10px;
+            }
+            
+            /* Mobile header improvements */
+            .header {
+                padding: 10px 15px;
+                height: 70px; /* Taller for mobile */
+            }
+            
+            .timer-container {
+                font-size: 18px;
+            }
+            
+            .telegram-link {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            
+            /* Mobile question navigation */
+            .question {
+                margin-bottom: 25px;
+            }
+            
+            .question-prompt {
+                margin-bottom: 20px;
+            }
+            
+            .question-prompt p {
+                font-size: 16px;
+                line-height: 1.5;
+            }
+        }
+        
+        /* Additional mobile optimizations */
+        @media (max-width: 480px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .passage-panel, .questions-panel {
+                width: 100%;
+                min-width: auto;
+            }
+            
+            .resizer {
+                display: none; /* Hide resizer on very small screens */
+            }
+            
+            .footer__questionWrapper___1tZ46 {
+                margin-right: 5px;
+            }
+            
+            .footer__questionNo___3WNct {
+                padding: 10px 12px;
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1692,7 +2007,7 @@
                 </button>
             </div>
         </div>
-        <a href="https://t.me/+Zt6UezFDG6U2MTdl" target="_blank" class="telegram-link">
+        <a href="https://t.me/+SoPpY9nBi3U0NTE1" target="_blank" class="telegram-link">
             MINDLESS_WRITER
         </a>
     </div>
@@ -1715,365 +2030,369 @@
         <div class="panels-container">
             <div class="passage-panel" id="passage-panel">
                 <div id="passage-text-1" class="reading-passage">
-                    <h4 class="text-center">The Dinosaurs Footprints and Extinction</h4>
-                    <p><strong>A</strong>&nbsp;&nbsp;EVERYBODY knows that the dinosaurs were killed by an asteroid. Something big hit the earth 65 million years ago and, when the dust had fallen, so had the great reptiles. There is thus a nice if ironic, symmetry in the idea that a similar impact brought about the dinosaurs' rise. That is the thesis proposed by Paul Olsen, of Columbia University, and his colleagues in this week's Science.</p>
-                    <p><strong>B</strong>&nbsp;&nbsp;Dinosaurs first appeared in the fossil record 230m years ago, during the Triassic period. But they were mostly small, and they shared the earth with lots of other sorts of reptile. It was in the subsequent Jurassic, which began 202 million years ago, that they overran the planet and turned into the monsters depicted in the book and movie "Jurassic Park". (Actually, though, the dinosaurs that appeared on screen were from the still more recent Cretaceous period.) Dr Olsen and his colleagues are not the first to suggest that the dinosaurs inherited the earth as the result of an asteroid strike. But they are the first to show that the takeover did, indeed, happen in a geological eyeblink.</p>
-                    <p><strong>C</strong>&nbsp;&nbsp;Dinosaur skeletons are rare. Dinosaur footprints are, however, surprisingly abundant. And the sizes of the prints are as good an indication of the sizes of the beasts as are the skeletons themselves. Dr Olsen and his colleagues, therefore, concentrated on prints, not bones.</p>
-                    <p><strong>D</strong>&nbsp;&nbsp;The prints in question were made in eastern North America, a part of the world the full of rift valleys to those in East Africa today. Like the modern African rift valleys, the Triassic/Jurassic American ones contained lakes, and these lakes grew and shrank at regular intervals because of climatic changes caused by periodic shifts in the earth's orbit. (A similar phenomenon is responsible for modern ice ages.) That regularity, combined with reversals in the earth's magnetic field, which are detectable in the tiny fields of certain magnetic minerals, means that rocks from this place and period can be dated to within a few thousand years. As a bonus, squishy lake-edge sediments are just the things for recording the tracks of passing animals. By dividing the labour between themselves, the ten authors of the paper were able to study such tracks at 80 sites.</p>
-                    <p><strong>E</strong>&nbsp;&nbsp;The researchers looked at 18 so-called ichnotaxa. These are recognizable types of the footprint that cannot be matched precisely with the species of animal that left them. But they can be matched with a general sort of animal, and thus act as an indicator of the fate of that group, even when there are no bones to tell the story. Five of the ichnotaxa disappear before the end of the Triassic, and four march confidently across the boundary into the Jurassic. Six, however, vanish at the boundary, or only just splutter across it; and there appear from nowhere, almost as soon as the Jurassic begins.</p>
-                    <p><strong>F</strong>&nbsp;&nbsp;That boundary itself is suggestive. The first geological indication of the impact that killed the dinosaurs was an unusually high level of iridium in rocks at the end of the Cretaceous when the beasts disappear from the fossil record. Iridium is normally rare at the earth's surface, but it is more abundant in meteorites. When people began to believe the impact theory, they started looking for other Cretaceous-and anomalies. One that turned up was a surprising abundance of fern spores in rocks just above the boundary layer – a phenomenon known as a "fern spike".</p>
-                    <p><strong>G</strong>&nbsp;&nbsp;That matched the theory nicely. Many modern ferns are opportunists. They cannot compete against plants with leaves, but if a piece of land is cleared by, say, a volcanic eruption, they are often the first things to set up shop there. An asteroid strike would have scoured much of the earth of its vegetable cover, and provided a paradise for ferns. A fern spike in the rocks is thus a good indication that something terrible has happened.</p>
-                    <p><strong>H</strong>&nbsp;&nbsp;Both an iridium anomaly and a fern spike appear in rocks at the end of the Triassic, too. That accounts for the disappearing ichnotaxa: the creatures that made them did not survive the holocaust. The surprise is how rapidly the new ichnotaxa appear.</p>
-                    <p><strong>I</strong>&nbsp;&nbsp;Dr Olsen and his colleagues suggest that the explanation for this rapid increase in size may be a phenomenon called ecological release. This is seen today when reptiles (which, in modern times, tend to be small creatures) reach islands where they face no competitors. The most spectacular example is on the Indonesian island of Komodo, where local lizards have grown so large that they are often referred to as dragons. The dinosaurs, in other words, could flourish only when the competition had been knocked out.</p>
-                    <p><strong>J</strong>&nbsp;&nbsp;That leaves the question of where the impact happened. No large hole in the earth's crust seems to be 202m years old. It may, of course, have been overlooked. Old craters are eroded and buried, and not always easy to find. Alternatively, it may have vanished. Although the continental crust is more or less permanent, the ocean floor is constantly recycled by the tectonic processes that bring about continental drift. There is no ocean floor left that is more than 200m years old, so a crater that formed in the ocean would have been swallowed up by now.</p>
-                    <p><strong>K</strong>&nbsp;&nbsp;There is a third possibility, however. This is that the crater is known, but has been misdated. The Manicouagan "structure", a crater in Quebec, is thought to be 214m years old. It is huge – some 100km across – and seems to be the largest of between three and five craters that formed within a few hours of each other as the lumps of a disintegrated comet hit the earth one by one.</p>
+                    <h4 class="text-center">Voyage of Going: beyond the blue line</h4>
+                    <p>One feels a certain sympathy for Captain James Cook on the day in 1778 that he "discovered" Hawaii. Then on his third expedition to the Pacific, the British navigator had explored scores of islands across the breadth of the sea, from lush New Zealand to the lonely wastes of Easter Island. This latest voyage had taken him thousands of miles north from the Society Islands to an archipelago so remote that even the old Polynesians back on Tahiti knew nothing about it. Imagine Cook's surprise, then, when the natives of Hawaii came paddling out in their canoes and greeted him in a familiar tongue, one he had heard on virtually every mote of inhabited land he had visited. Marvelling at the ubiquity of this Pacific language and culture, he later wondered in his journal: "How shall we account for this Nation spreading itself so far over this Vast ocean?"</p>
+                    <p>Answers have been slow in coming. But now a startling archaeological find on the island of Éfaté, in the Pacific nation of Vanuatu, has revealed an ancient seafaring people, the distant ancestors of today's Polynesians, taking their first steps into the unknown. The discoveries there have also opened a window into the shadowy world of those early voyagers. At the same time, other pieces of this human puzzle are turning up in unlikely places. Climate data gleaned from slow-growing corals around the Pacific and from sediments in alpine lakes in South America may help explain how, more than a thousand years later, the second wave of seafarers beat their way across the entire Pacific.</p>
+                    <p>"What we have is a first- or second-generation site containing the graves of some of the Pacific's first explorers," says Spriggs, professor of archaeology at the Australian National University and co-leader of an international team excavating the site. It came to light only by luck. A backhoe operator, digging up topsoil on the grounds of a derelict coconut plantation, scraped open a grave – the first of dozens in a burial ground some 3,000 years old. It is the oldest cemetery ever found in the Pacific islands, and it harbors the bones of an ancient people archaeologists call the Lapita, a label that derives from a beach in New Caledonia where a landmark cache of their pottery was found in the 1950s. They were daring blue-water adventurers who roved the sea not just as explorers but also as pioneers, bringing along everything they would need to build new lives – their families and livestock, taro seedlings and stone tools.</p>
+                    <p>Within the span of few centuries, the Lapita stretched the boundaries of their world from the jungle-clad volcanoes of Papua New Guinea to the loneliest coral outliers of Tonga, at least 2,000 miles eastward in the Pacific. Along the way they explored millions of square miles of an unknown sea, discovering and colonizing scores of tropical islands never before seen by human eyes: Vanuatu, New Caledonia, Fiji, Samoa.</p>
+                    <p>What little is known or surmised about them has been pieced together from fragments of pottery, animal bones, obsidian flakes, and such oblique sources as comparative linguistics and geochemistry. Although their voyages can be traced back to the northern islands of Papua New Guinea, their language – variants of which are still spoken across the Pacific – came from Taiwan. And their peculiar style of pottery decoration, created by pressing a carved stamp into the clay, probably had its roots in the northern Philippines. With the discovery of the Lapita cemetery on Éfaté, the volume of data available to researchers has expanded dramatically. The bones of at least 62 individuals have been uncovered so far – including old men, young women, even babies – and more skeletons are known to be in the ground. Archaeologists were also thrilled to discover six complete Lapita pots. It's an important find, Spriggs says, for it conclusively identifies the remains as Lapita. "It would be hard for anyone to argue that these aren't Lapita when you have human bones enshrined inside what is unmistakably a Lapita urn."</p>
+                    <p>Several lines of evidence also undergird Spriggs's conclusion that this was a community of pioneers making their first voyages into the remote reaches of Oceania. For one thing, the radiocarbon dating of bones and charcoal places them early in the Lapita expansion. For another, the chemical makeup of the obsidian flakes littering the site indicates that the rock wasn't local; instead, it was imported from a large island in Papua New Guinea's the Bismarck Archipelago, the springboard for the Lapita's thrust into the Pacific. A particularly intriguing clue comes from chemical tests on the teeth of several skeletons. DNA teased from these ancient bones may also help answer one of the most puzzling questions in Pacific anthropology: Did all Pacific islanders spring from one source or many? Was there only one outward migration from a single point in Asia, or several from different points? "This represents the best opportunity we've had yet," says Spriggs, "to find out who the Lapita actually were, where they came from, and who their closest descendants are today."</p>
+                    <p>"There is one stubborn question for which archaeology has yet to provide any answers: How did the Lapita accomplish the ancient equivalent of a moon landing, many times over? No one has found one of their canoes or any rigging, which could reveal how the canoes were sailed. Nor do the oral histories and traditions of later Polynesians offer any insights, for they segue into myth long before they reach as far back in time as the Lapita." All we can say for certain is that the Lapita had canoes that were capable of ocean voyages, and they had the ability to sail them," says Geoff Irwin, a professor of archaeology at the University of Auckland and an avid yachtsman. Those sailing skills, he says, were developed and passed down over thousands of years by earlier mariners who worked their way through the archipelagoes of the western Pacific making short crossings to islands within sight of each other. Reaching Fiji, as they did a century or so later, meant crossing more than 500 miles of ocean, pressing on day after day into the great blue void of the Pacific. What gave them the courage to lunch out on such a risky voyage?</p>
+                    <p>The Lapita's thrust into the Pacific was eastward, against the prevailing trade winds, Irwin notes. Those nagging headwinds, he argues, may have been the key to their success. "They could sail out for days into the unknown and reconnoiter, secure in the knowledge that if they didn't find anything, they could turn about and catch a swift ride home on the trade winds. It's what made the whole thing work." Once out there, skilled seafarers would detect abundant leads to follow to land: seabirds and turtles, coconuts and twigs carried out to sea by the tides and the afternoon pileup of clouds on the horizon that often betokens an island in the distance. Some islands may have broadcast their presence with far less subtlety than a cloud bank. Some of the most violent eruptions anywhere on the planet during the past 10,000 years occurred in Melanesia, which sits nervously in one of the most explosive volcanic regions on Earth. Even less spectacular eruptions would have sent plumes of smoke billowing into the stratosphere and rained ash for hundreds of miles. It's possible that the Lapita saw these signs of distant islands and later sailed off in their direction, knowing they would find land. For returning explorers, successful or not, the geography of their own archipelagoes provided a safety net to keep them from overshooting their home ports and sailing off into eternity.</p>
+                    <p>However they did it, the Lapita spread themselves a third of the way across the Pacific, the called it quits for reasons known only to them. Ahead lay the vast emptiness of the central Pacific, and perhaps they were too thinly stretched to venture farther. They probably never numbered more than a few thousand in total, and in their rapid migration eastward they encountered hundreds of islands – more than 300 in Fiji alone. Still, more than a millennium would pass before the Lapita's descendants, a people we now call the Polynesians, struck out in search of new territory.</p>
                 </div>
                 <div id="passage-text-2" class="reading-passage hidden">
-                    <h4 class="text-center">Art in Iron and Steel</h4>
-                    <p><strong>A</strong>&nbsp;&nbsp;Works of engineering and technology are sometimes viewed as the antitheses of art and humanity. Think of the connotations of assembly lines, robots, and computers. Any positive values there might be in such creations of the mind and human industry can be overwhelmed by the associated negative images of repetitive, stressful, and threatened jobs. Such images fuel the arguments of critics of technology even as they may drive powerful cars and use the Internet to protest what they see as the artless and dehumanizing aspects of living in an industrialized and digitized society. At the same time, landmark megastructures such as the Brooklyn and Golden Gate bridges are almost universally hailed as majestic human achievements as well as great engineering monuments that have come to embody the spirits of their respective cities. The relationship between art and engineering has seldom been easy or consistent.</p>
-                    <p><strong>B</strong>&nbsp;&nbsp;The human worker may have appeared to be but a cog in the wheel of industry, yet photographers could reveal the beauty of line and composition in a worker doing something as common as using a wrench to turn a bolt. When Henry Ford's enormous River Rouge plant opened in 1927 to produce the Model A, the painter/photographer Charles Sheeler was chosen to photograph it. The world's largest car factory captured the imagination of Sheeler, who described it as the most thrilling subject he ever had to work with. The artist also composed oil paintings of the plant, giving them titles such as American Landscape and Classic Landscape.</p>
-                    <p><strong>C</strong>&nbsp;&nbsp;Long before Sheeler, other artists, too, had seen the beauty and humanity in works of engineering and technology. This is perhaps no more evident than in Coalbrookdale, England, where iron, which was so important to the industrial revolution, was worked for centuries. Here, in the late eighteenth century, Abraham Darby III cast on the banks of the Severn River the large ribs that formed the world's first iron bridge, a dramatic departure from the classic stone and timber bridges that dotted the countryside and were captured in numerous serene landscape paintings. The metal structure, simply but appropriately called Iron Bridge, still spans the river and still beckons engineers, artists, and tourists to gaze upon and walk across it, as if on a pilgrimage to a revered place.</p>
-                    <p><strong>D</strong>&nbsp;&nbsp;At Coalbrookdale, the reflection of the ironwork in the water completes the semicircular structure to form a wide-open eye into the future that is now the past. One artist's bucolic depiction shows pedestrians and horsemen on the bridge, as if on a woodland trail. On one shore, a pair of well-dressed onlookers interrupts their stroll along the riverbank, perhaps to admire the bridge. On the other side of the gently flowing river, a lone man leads two mules beneath an arch that lets the towpath pass through the bridge's abutment. A single boatman paddles across the river in a tiny tub boat. He is in no rush because there is no towline to carry from one side of the bridge to the other. This is how Michael Rooker was Iron Bridge in his 1792 painting. A colored engraving of the scene hangs in the nearby Coalbrookdale museum, along with countless other contemporary renderings of the bridge in its full glory and in its context, showing the iron structure not as a blight on the landscape but at the center of it. The surrounding area at the same time radiates out from the bridge and pales behind it.</p>
-                    <p><strong>E</strong>&nbsp;&nbsp;In the nineteenth century, the railroads captured the imagination of artists, and the steam engine in the distance of a landscape became as much a part of it as the herd of cows in the foreground. The Impressionist Claude Monet painted man-made structures like railway stations and cathedrals as well as water lilies. Portrait painters such as Christian Schussele found subjects in engineers and inventors – and their inventions – as well as in the American founding fathers. By the twentieth century, engineering, technology, and industry were very well established as subjects for artists.</p>
-                    <p><strong>F</strong>&nbsp;&nbsp;American-born Joseph Pennell illustrated many European travel articles and books. Pennell, who early in his career made drawings of buildings under construction and shrouded in scaffolding, returned to America late in life and recorded industrial activities during World War I. He is perhaps best known among engineers for his depiction of the Panama Canal as it neared completion and his etchings of the partially completed Hell Gate and Delaware River bridges.</p>
-                    <p><strong>G</strong>&nbsp;&nbsp;Pennell has often been quoted as saying, "Great engineering is great art," a sentiment that he expressed repeatedly. He wrote of his contemporaries, "I understand nothing of engineering, but I know that engineers are the greatest architects and the most pictorial builders since the Greeks." Where some observers saw only utility, Pennell saw also beauty, if not in form then at least in scale. He felt he was not only rendering a concrete subject but also conveying through his drawings the impression that it made on him. Pennell called the sensation that he felt before a great construction project 'The Wonder of Work". He saw engineering as a process. That process is memorialized in every completed dam, skyscraper, bridge, or other great achievement of engineering.</p>
-                    <p><strong>H</strong>&nbsp;&nbsp;If Pennell experienced the wonder of work in the aggregate, Lewis Hine focused on the individuals who engaged in the work. Hine was trained as a sociologist but became best known as a photographer who exposed the exploitation of children. His early work documented immigrants passing through Ellis Island, along with the conditions in the New York tenements where they lived and the sweatshops where they worked. Upon returning to New York, he was given the opportunity to record the construction of the Empire State Building, which resulted in the striking photographs that have become such familiar images of daring and insouciance. He put his own life at risk to capture workers suspended on cables hundreds of feet in the air and sitting on a high girder eating lunch. To engineers today, one of the most striking features of these photos, published in 1932 in Men at Work, is the absence of safety lines and hard hats. However, perhaps more than anything, the photos evoke Pennell's "The Wonder of Work" and inspire admiration for the bravery and skill that bring a great engineering project to completion.</p>
+                    <h4 class="text-center">Smell and Memory</h4>
+                    <p style="text-align:center; font-style: italic;">SMELLS LIKE YESTERDAY</p>
+                    <p style="text-align:center; font-style: italic;">Why does the scent of a fragrance or the mustiness of an old trunk trigger such powerful memories of childhood? New research has the answer, writes Alexandra Witze.</p>
+                    <p><strong>A</strong>&nbsp;&nbsp;You probably pay more attention to a newspaper with your eyes than with your nose. But lift the paper to your nostrils and inhale. The smell of newsprint might carry you back to your childhood when your parents perused the paper on Sunday mornings. Or maybe some other smell takes you back – the scent of your mother's perfume, the pungency of a driftwood campfire. Specific odours can spark a flood of reminiscences. Psychologists call it the "Proustian phenomenon", after French novelist Marcel Proust. Near the beginning of the masterpiece In Search of Lost Time, Proust's narrator drunks a madeleine cookie into a cup of tea – and the scent and taste unleash a torrent of childhood memories for 3000 pages.</p>
+                    <p><strong>B</strong>&nbsp;&nbsp;Now, this phenomenon is getting scientific treatment. Neuroscientists Rachel Herz, a cognitive neuroscientist at Brown University in Providence, Rhode Island, have discovered, for instance, how sensory memories are shared across the brain, with different brain regions remembering the sights, smells, tastes and sounds of a particular experience. Meanwhile, psychologists have demonstrated that memories triggered by smells can be more emotional, as well as more detailed, than memories not related to smells. When you inhale, odour molecules set brain cells dancing within a region known as the amygdala, a part of the brain that helps control emotion. In contrast, the other senses, such as taste or touch, get routed through other parts of the brain before reaching the amygdala. The direct link between odours and the amygdala may help explain the emotional potency of smells. "There is this unique connection between the sense of smell and the part of the brain that processes emotion," says Rachel Herz.</p>
+                    <p><strong>C</strong>&nbsp;&nbsp;But the links don't stop there. Like an octopus reaching its tentacles outward, the memory of smells affects other brain regions as well. In recent experiments, neuroscientists at University College London (UCL) asked 15 volunteers to look at pictures while smelling unrelated odours. For instance, the subjects might see a photo of a duck paired with the scent of a rose, and then be asked to create a story linking the two. Brain scans taken at the time revealed that the volunteers' brains were particularly active in a region known as the olfactory cortex, which is known to be involved in processing smells. Five minutes later, the volunteers were shown the duck photo again, but without the rose smell. And in their brains, the olfactory cortex lit up again, the scientists reported recently. The fact that the olfactory cortex became active in the absence of the odour suggests that people's sensory memory of events is spread across different brain regions. Imagine going on a seaside holiday, says ULC team leader, Jay Gottfried. The sight of the waves becomes stored in one area, whereas the crash of the surf goes elsewhere, and the smell of seaweed in yet another place. There could be advantages to having memories spread around the brain. "You can reawaken that memory from any one of the sensory triggers," says Gottfried. "Maybe the smell of the sun lotion, or a particular sound from that day, or the sight of a rock formation." Or – in the case of an early hunter and gatherer (out on a plain – the sight of a lion might be enough to trigger the urge to flee, rather than having to wait for the sound of its roar and the stench of its hide to kick in as well.</p>
+                    <p><strong>D</strong>&nbsp;&nbsp;Remembered smells may also carry extra emotional baggage, says Herz. Her research suggests that memories triggered by odours are more emotional than memories triggered by other cues. In one recent study, Herz recruited five volunteers who had vivid memories associated with a particular perfume, such as opium for Women and Juniper Breeze from Bath and Body Works. She took images of the volunteers' brains as they sniffed that perfume and an unrelated perfume bottle.) Smelling the specified perfume activated the volunteers brains the most, particularly in the amygdala, and in a region called the hippocampus, which helps in memory formation. Herz published the work earlier this year in the journal Neuropsychologia.</p>
+                    <p><strong>E</strong>&nbsp;&nbsp;But she couldn't be sure that the other senses wouldn't also elicit a strong response. Do in another study Herz compared smells with sounds and pictures. She had 70 people describe an emotional memory involving three items – popcorn, fresh-cut grass and a campfire. Then they compared the items through sights, sounds and smells. For instance, the person might see a picture of a lawnmower, then sniff the scent of grass and finally listen to the lawnmower's sound. Memories triggered by smell were more evocative than memories triggered by either sights or sounds.</p>
+                    <p><strong>F</strong>&nbsp;&nbsp;Odour-evoked memories may be not only more emotional but more detailed as well. Working with colleague John Downes, psychologist Simon Chu of the University of Liverpool started researching odour and memory partly because of his grandmother's stories about Chinese culture. As generations gathered to share oral histories, they would pass a small pot of spice or incense around; later, when they wanted to remember the story in as much detail as possible, they would pass the same smell around again. "It's kind of fits with a lot of anecdotal evidence on how smells can be really good reminders of past experiences," Chu says. And scientific research seems to bear out the anecdotes. In one experiment, Chu and Downes asked 42 volunteers to tell a life story, then tested to see whether odours such as coffee and cinnamon could help them remember more detail in the story. They could.</p>
+                    <p><strong>G</strong>&nbsp;&nbsp;Despite such studies, not everyone is convinced that Proust can be scientifically analysed. In the June issue of Chemical Senses, Chu and Downes exchanged critiques with renowned perfumer and chemist J. Stephan Jellinek. Jellinek chided the Liverpool researchers for, among other things, presenting the smells and asking the volunteers to think of memories, rather than seeing what memories were spontaneously evoked by the odours. But there's only so much science can do to test a phenomenon that's inherently different for each person, Chu says. Meanwhile, Jellinek has also been collecting anecdotal accounts of Proustian experiences, hoping to find some common links between the experiences. "I think there is a case to be made that surprise may be a major aspect of the Proust phenomenon," he says. "That's why people are so struck by these memories." No one knows whether Proust ever experienced such a transcendental moment. But his notions of memory, written as fiction nearly a century ago, continue to inspire scientists of today.</p>
                 </div>
                 <div id="passage-text-3" class="reading-passage hidden">
-                    <h4 class="text-center">Beyond the Blue Line</h4>
-                    <p><strong>A</strong>&nbsp;&nbsp;Much of the thrill of venturing to the far side of the world rests on the romance of difference. So one feels a certain sympathy for Captain James Cook on the day in 1778 that he "discovered" Hawaii. Then on his third expedition to the Pacific, the British navigator had explored scores of islands across the breadth of the sea, from lush New Zealand to the lonely wastes of Easter Island. This latest voyage had taken him thousands of miles north from the Society Islands to an archipelago so remote that even the old Polynesians back on Tahiti knew nothing about it. Imagine Cook's surprise, then, when the natives of Hawaii came paddling out in their canoes and greeted him in a familiar tongue, one he had heard on virtually every mote of inhabited land he had visited. Marveling at the ubiquity of this Pacific language and culture, he later wondered in his journal: "How shall we account for this Nation spreading itself so far over this vast ocean?"</p>
-                    <p><strong>B</strong>&nbsp;&nbsp;That question, and others that flow from it has tantalized inquiring minds for centuries: Who were these amazing seafarers? Where did they come from, starting more than 3,000 years ago? And how could a Neolithic people with simple canoes and no navigation gear manage to find, let alone colonize, hundreds of far-flung island specks scattered across an ocean that spans nearly a third of the globe? Answers have been slow in coming. But now a startling archaeological find on the island of Éfaté, in the Pacific nation of Vanuatu, has revealed an ancient seafaring people, the distant ancestors of today's Polynesians, taking their first steps into the unknown. The discoveries there have also opened a window into the shadowy world of those early voyagers.</p>
-                    <p><strong>C</strong>&nbsp;&nbsp;"What we have is a first- or second-generation site containing the graves of some of the Pacific's first explorers," says Spriggs, professor of archaeology at the Australian National University and co-leader of an international team excavating the site. It came to light only by luck. A backhoe operator, digging up topsoil on the grounds of a derelict coconut plantation, scraped open a grave – the first of dozens in a burial ground some 3,000 years old. It is the oldest cemetery ever found in the Pacific islands, and it harbors the bones of an ancient people archaeologists call the Lapita, a label that derives from a beach in New Caledonia where a landmark cache of their pottery was found in the 1950s.</p>
-                    <p><strong>D</strong>&nbsp;&nbsp;They were daring blue-water adventurers who roved the sea not just as explorers but also as pioneers, bringing along everything they would need to build new lives – their families and livestock, taro seedlings and stone tools. Within the span of a few centuries, the Lapita stretched the boundaries of their world from the jungle-clad volcanoes of Papua New Guinea to the loneliest coral outliers of Tonga, at least 2,000 miles eastward in the Pacific. Along the way they explored millions of square miles of an unknown sea, discovering and colonizing scores of tropical islands never before seen by human eyes: Vanuatu, New Caledonia, Fiji, Samoa.</p>
-                    <p>It was their descendants, centuries later, who became the great Polynesian navigators we all tend to think of: the Tahitians and Hawaiians, the New Zealand Maori, and the curious people who erected those statues on Easter Island. But it was the Lapita who laid the foundation – who bequeathed to the island the language, customs, and cultures that their more famous descendants carried around the Pacific.</p>
-                    <p><strong>E</strong>&nbsp;&nbsp;While the Lapita left a glorious legacy, they also left precious few clues about themselves. A particularly intriguing clue comes from chemical tests on the teeth of several skeletons. Then as now, the food and water you consume as a child deposits oxygen, carbon, strontium, and other elements in your still-forming adult teeth. The isotope signatures of these elements vary subtly from place to place, so that if you grow up in, say, Buffalo, New York, then spend your adult life in California, tests on the isotopes in your teeth will always reveal your eastern roots.</p>
-                    <p>Isotope analysis indicates that several of the Lapita buried on Éfaté didn't spend their childhoods here but came from somewhere else. And while isotopes can't pinpoint their precise island of origin, this much is clear: At some point in their lives, these people left the villages of their birth and made a voyage by seagoing canoe, never to return. DNA teased from these ancient bones may also help answer one of the most puzzling questions in Pacific anthropology: Did all Pacific islanders spring from one source or many? Was there only one outward migration from a single point in Asia, or several from different points? "This represents the best opportunity we've had yet," says Spriggs, "to find out who the Lapita actually were, where they came from, and who their closest descendants are today."</p>
-                    <p><strong>F</strong>&nbsp;&nbsp;There is one stubborn question for which archaeology has yet to provide any answers: How did the Lapita accomplish the ancient equivalent of a moon landing, many times over? No one has found one of their canoes or any rigging, which could reveal how the canoes were sailed. Nor do the oral histories and traditions of later Polynesians offer any insights.</p>
-                    <p>"All we can say for certain is that the Lapita had canoes that were capable of ocean voyages, and they had the ability to sail them," says Geoff Irwin, a professor of archaeology at the University of Auckland and an avid yachtsman. Those sailing skills, he says, were developed and passed down over thousands of years by earlier mariners who worked their way through the archipelagoes of the western Pacific making short crossings to islands within sight of each other. The real adventure didn't begin, however, until their Lapita descendants neared the end of the Solomons chain, for this was the edge of the world. The nearest landfall, the Santa Cruz Islands, is almost 230 miles away, and for at least 150 of those miles, the Lapita sailors would have been out of sight of land, with empty horizons on every side.</p>
-                    <p><strong>G</strong>&nbsp;&nbsp;The Lapita's thrust into the Pacific was eastward, against the prevailing trade winds, Irwin notes. Those nagging headwinds, he argues, may have been the key to their success. "They could sail out for days into the unknown and reconnoiter, secure in the knowledge that if they didn't find anything, they could turn about and catch a swift ride home on the trade winds. It's what made the whole thing work." Once out there, skilled seafarers would detect abundant leads to follow to land: seabirds and turtles, coconuts and twigs carried out to sea by the tides and the afternoon pileup of clouds on the horizon that often betokens an island in the distance.</p>
-                    <p>All this presupposes one essential detail, says Atholl Anderson, professor of prehistory at the Australian National University and, like Irwin, a keen yachtsman: that the Lapita had mastered the advanced art of tacking into the wind. "And there's no proof that they could do any such thing," Anderson says. "There has been this assumption that they must have done so, and people have built canoes to re-create those early voyages based on that assumption. But nobody has any idea what their canoes looked like or how they were rigged."</p>
-                    <p><strong>H</strong>&nbsp;&nbsp;However they did it, the Lapita spread themselves a third of the way across the Pacific, then called it quits for reasons known only to them. Ahead lay the vast emptiness of the central Pacific, and perhaps they were too thinly stretched to venture farther. They probably never numbered more than a few thousand in total, and in their rapid migration eastward they encountered hundreds of islands – more than 300 in Fiji alone. Supplied with such an embarrassment of riches, they could settle down and enjoy what for a time was Earth's last Edens.</p>
-                    <p><strong>I</strong>&nbsp;&nbsp;Rather than give all the credit to human skill and daring, Anderson invokes the winds of change. El Niño, the same climate disruption that affects the Pacific today, may have helped scatter the first settlers to the ends of the ocean, Anderson suggests. Climate data obtained from slow-growing corals around the Pacific and from lake-bed sediments in the Andes of South America point to a series of unusually frequent El Niño around the time of the Lapita expansion, and again between 1,600 and 1,200 years ago, when the second wave of pioneer navigators made their voyages farther east, to the remotest corners of the Pacific. By reversing the regular east-to-west flow of the trade winds for weeks at a time, these "super El Niño" might have sped the Pacific's ancient mariners on long, unplanned voyages could have been key to launching Polynesians across the wide expanse of open water between Tonga, where the Lapita stopped, and the distant archipelagoes of eastern Polynesia. "Once they crossed that gap, they could island-hop throughout the region, and from the Marquesas, it's mostly downwind to Hawaii," Anderson says. It took another 400 years for mariners to reach Easter Island, which lies in the opposite direction – normally upwind. "Once again this was during a period of frequent El Niño activity."</p>
+                    <h4 class="text-center">Communicating Conflict!</h4>
+                    <div class="drop-zone" data-section="A" data-q-start="27">27
+                        <span class="drag-item" style="display: none;"></span>
+                    </div>
+                    <p>As far back as Hippocrates's time (460-370 B.C.), people have tried to understand other people by characterizing them according to personality type or temperament. Hippocrates believed there were four different body fluids that influenced four basic types of temperament. His work was further developed 500 years later by Galen. These days there is any number of self-assessment tools that relate to the basic descriptions developed by Galen, although we no longer believe the source to be the types of body fluid that dominate our systems.</p>
+                    <div class="drop-zone" data-section="B" data-q-start="28">28
+                        <span class="drag-item" style="display: none;"></span>
+                    </div>
+                    <p>The values in self-assessments that help determine personality style. Learning styles, communication styles, conflict-handling styles, or other aspects of individuals is that they help depersonalize conflict in interpersonal relationships. The depersonalization occurs when you realize that others aren't trying to be difficult, but they need different or more information than you do. They're not intending to be rude: they are so focused on the task they forget about greeting people. They would like to work faster but not at the risk of damaging the relationships needed to get the job done. They understand there is a job to do. But it can only be done right with the appropriate information, which takes time to collect. When used appropriately, understanding communication styles can help resolve conflict on teams. Very rarely are conflicts true personality issues. Usually, they are issues of style, information needs, or focus.</p>
+                    <div class="drop-zone" data-section="C" data-q-start="29">29
+                        <span class="drag-item" style="display: none;"></span>
+                    </div>
+                    <p>Hippocrates and later Galen determined there were four basic temperaments: sanguine, phlegmatic, melancholic and choleric. These descriptions were developed centuries ago and are still somewhat apt, although you could update the wording. In today's world, they translate into the four fairly common communication styles described below:</p>
+                    <div class="drop-zone" data-section="D" data-q-start="30">30
+                        <span class="drag-item" style="display: none;"></span>
+                    </div>
+                    <p>The sanguine person would be the expressive or spirited style of communication. These people speak in pictures. They invest a lot of emotion and energy in their communication and often speak quickly. Putting their whole body into it. They are easily sidetracked onto a story that may or may not illustrate the point they are trying to make. Because of their enthusiasm, they are great team motivators. They are concerned about people and relationships. Their high levels of energy can come on strong at times and their focus is usually on the bigger picture, which means they sometimes miss the details or the proper order of things. These people find conflict or differences of opinion invigorating and love to engage in a spirited discussion. They love change and are constantly looking for new and exciting adventures.</p>
+                    <div class="drop-zone" data-section="E" data-q-start="31">31
+                        <span class="drag-item" style="display: none;"></span>
+                    </div>
+                    <p>Tile phlegmatic person – cool and persevering – translates into the technical or systematic communication style. This style of communication is focused on facts and technical details. Phlegmatic people have an orderly methodical way of approaching tasks, and their focus is very much on the task, not on the people, emotions, or concerns that the task may evoke. The focus is also more on the details necessary to accomplish a task.</p>
+                    <p>Sometimes the details overwhelm the big picture and focus needs to be brought back to the context of the task. People with this style think the facts should speak for themselves, and they are not as comfortable with conflict. They need time to adapt to change and need to understand both the logic of it and the steps involved.</p>
+                    <div class="drop-zone" data-section="F" data-q-start="32">32
+                        <span class="drag-item" style="display: none;"></span>
+                    </div>
+                    <p>Tile melancholic person who is softhearted and oriented toward doing things for others translates into the considerate or sympathetic communication style. A person with this communication style is focused on people and relationships. They are good listeners and do things for other people – sometimes to the detriment of getting things done for themselves. They want to solicit everyone's opinion and make sure everyone is comfortable with whatever is required to get the job done. At times this focus on others can distract from the task at hand. Because they are so concerned with the needs of others and smoothing over issues, they do not like conflict. They believe that change threatens the status quo and tends to make people feel uneasy, so people with this communication style, like phlegmatic people, need time to consider the changes in order to adapt to them.</p>
+                    <div class="drop-zone" data-section="G" data-q-start="33">33
+                        <span class="drag-item" style="display: none;"></span>
+                    </div>
+                    <p>The choleric temperament translates into the bold or direct style of communication. People with this style are brief in their communication – the fewer words the better. They are big-picture thinkers and love to be involved in many things at once. They are focused on tasks and outcomes and often forget that the people involved in carrying out the tasks have needs. They don't do detail work easily and as a result, can often underestimate how much time it takes to achieve the task. Because they are so direct, they often seem forceful and can be very intimidating to others. They usually would welcome someone challenging them. But most other styles are afraid to do so. They also thrive on change, the more the better.</p>
+                    <div class="drop-zone" data-section="H" data-q-start="34">34
+                        <span class="drag-item" style="display: none;"></span>
+                    </div>
+                    <p>A well-functioning team should have all of these communications styles for true effectiveness. All teams need to focus on the task, and they need to take care of relationships in order to achieve those tasks. They need the big picture perspective or the context of their work, and they need the details to be identified and taken care of for success. We all have aspects of each style within us. Some of us can easily move from one style to another and adapt our style to the needs of the situation at hand-whether the focus is on tasks or relationships. For others, a dominant style is very evident, and it is more challenging to see the situation from the perspective of another style.</p>
+                    <p>The work environment can influence communication styles either by the type of work that is required or by the predominance of one style reflected in that environment. Some people use one style at work and another at home. The good news about communication styles is that we have the ability to develop flexibility in our styles. The greater the flexibility we have, the more skilled we usually are at handling possible and actual conflicts. Usually, it has to be relevant to us to do so, either because we think it is important or because there are incentives in our environment to encourage it. The key is that we have to want to become flexible with our communication style. As Henry Ford said, "Whether you think you can or you can't, you're right!"</p>
                 </div>
             </div>
             <div class="resizer" id="resizer"></div>
             <div class="questions-panel" id="questions-panel">
                 <div id="questions-1" class="question-set">
                     <div class="questions-container">
-                        <div class="question" data-q-start="1" data-q-end="6">
+                        <div class="question" data-q-start="1" data-q-end="7">
                             <div class="question-prompt">
-                                <p><strong>Questions 1-6</strong></p>
+                                <p><strong>Questions 1–7</strong></p>
                                 <p>Do the following statements agree with the information given in Reading Passage 1?</p>
                                 <ul style="list-style: none; padding-left: 0;">
-                                    <li><strong>YES</strong> if the statement is true</li>
-                                    <li><strong>NO</strong> if the statement is false</li>
-                                    <li><strong>NOT GIVEN</strong> if the information is not given in the passage</li>
+                                    <li><strong>TRUE</strong> if the statement agrees with the information</li>
+                                    <li><strong>FALSE</strong> if the statement contradicts the information</li>
+                                    <li><strong>NOT GIVEN</strong> if there is no information on this</li>
                                 </ul>
                             </div>
                             <div class="tf-question" data-q-start="1" data-q-end="1">
-                                <div class="tf-question-line"><span class="tf-question-number">1</span><span class="tf-question-text">Dr Paul Olsen and his colleagues believe that asteroid knock may also lead to dinosaurs' boom.</span></div>
+                                <div class="tf-question-line"><span class="tf-question-number">1</span><span class="tf-question-text">Captain cook once expected Hawaii might speak another language of people from other pacific islands.</span></div>
                                 <div class="tf-options">
-                                    <label class="tf-option"><input type="radio" name="q1" value="YES"> YES</label>
-                                    <label class="tf-option"><input type="radio" name="q1" value="NO"> NO</label>
+                                    <label class="tf-option"><input type="radio" name="q1" value="TRUE"> TRUE</label>
+                                    <label class="tf-option"><input type="radio" name="q1" value="FALSE"> FALSE</label>
                                     <label class="tf-option"><input type="radio" name="q1" value="NOT GIVEN"> NOT GIVEN</label>
                                 </div>
                             </div>
                             <div class="tf-question" data-q-start="2" data-q-end="2">
-                                <div class="tf-question-line"><span class="tf-question-number">2</span><span class="tf-question-text">Books and movie like Jurassic Park often exaggerate the size of the dinosaurs.</span></div>
+                                <div class="tf-question-line"><span class="tf-question-number">2</span><span class="tf-question-text">Captain cook depicted a number of cultural aspects of Polynesians in his journal.</span></div>
                                 <div class="tf-options">
-                                    <label class="tf-option"><input type="radio" name="q2" value="YES"> YES</label>
-                                    <label class="tf-option"><input type="radio" name="q2" value="NO"> NO</label>
+                                    <label class="tf-option"><input type="radio" name="q2" value="TRUE"> TRUE</label>
+                                    <label class="tf-option"><input type="radio" name="q2" value="FALSE"> FALSE</label>
                                     <label class="tf-option"><input type="radio" name="q2" value="NOT GIVEN"> NOT GIVEN</label>
                                 </div>
                             </div>
                             <div class="tf-question" data-q-start="3" data-q-end="3">
-                                <div class="tf-question-line"><span class="tf-question-number">3</span><span class="tf-question-text">Dinosaur footprints are more adequate than dinosaur skeletons.</span></div>
+                                <div class="tf-question-line"><span class="tf-question-number">3</span><span class="tf-question-text">Professor Spriggs and his research team went to the Efate to try to find the site of the ancient cemetery.</span></div>
                                 <div class="tf-options">
-                                    <label class="tf-option"><input type="radio" name="q3" value="YES"> YES</label>
-                                    <label class="tf-option"><input type="radio" name="q3" value="NO"> NO</label>
+                                    <label class="tf-option"><input type="radio" name="q3" value="TRUE"> TRUE</label>
+                                    <label class="tf-option"><input type="radio" name="q3" value="FALSE"> FALSE</label>
                                     <label class="tf-option"><input type="radio" name="q3" value="NOT GIVEN"> NOT GIVEN</label>
                                 </div>
                             </div>
                             <div class="tf-question" data-q-start="4" data-q-end="4">
-                                <div class="tf-question-line"><span class="tf-question-number">4</span><span class="tf-question-text">The prints were chosen by Dr Olsen to study because they are more detectable than the earth magnetic field to track the date of geological precise within thousands of years.</span></div>
+                                <div class="tf-question-line"><span class="tf-question-number">4</span><span class="tf-question-text">The Lapita completed a journey of around 2,000 miles in a period less than a centenary.</span></div>
                                 <div class="tf-options">
-                                    <label class="tf-option"><input type="radio" name="q4" value="YES"> YES</label>
-                                    <label class="tf-option"><input type="radio" name="q4" value="NO"> NO</label>
+                                    <label class="tf-option"><input type="radio" name="q4" value="TRUE"> TRUE</label>
+                                    <label class="tf-option"><input type="radio" name="q4" value="FALSE"> FALSE</label>
                                     <label class="tf-option"><input type="radio" name="q4" value="NOT GIVEN"> NOT GIVEN</label>
                                 </div>
                             </div>
                             <div class="tf-question" data-q-start="5" data-q-end="5">
-                                <div class="tf-question-line"><span class="tf-question-number">5</span><span class="tf-question-text">Ichnotaxa showed that footprints of dinosaurs offer exact information of the trace left by an individual species.</span></div>
+                                <div class="tf-question-line"><span class="tf-question-number">5</span><span class="tf-question-text">The Lapita were the first inhabitants in many pacific islands.</span></div>
                                 <div class="tf-options">
-                                    <label class="tf-option"><input type="radio" name="q5" value="YES"> YES</label>
-                                    <label class="tf-option"><input type="radio" name="q5" value="NO"> NO</label>
+                                    <label class="tf-option"><input type="radio" name="q5" value="TRUE"> TRUE</label>
+                                    <label class="tf-option"><input type="radio" name="q5" value="FALSE"> FALSE</label>
                                     <label class="tf-option"><input type="radio" name="q5" value="NOT GIVEN"> NOT GIVEN</label>
                                 </div>
                             </div>
                             <div class="tf-question" data-q-start="6" data-q-end="6">
-                                <div class="tf-question-line"><span class="tf-question-number">6</span><span class="tf-question-text">We can find more Iridium in the earth's surface than in meteorites.</span></div>
+                                <div class="tf-question-line"><span class="tf-question-number">6</span><span class="tf-question-text">The unknown pots discovered in Efate had once been used for cooking.</span></div>
                                 <div class="tf-options">
-                                    <label class="tf-option"><input type="radio" name="q6" value="YES"> YES</label>
-                                    <label class="tf-option"><input type="radio" name="q6" value="NO"> NO</label>
+                                    <label class="tf-option"><input type="radio" name="q6" value="TRUE"> TRUE</label>
+                                    <label class="tf-option"><input type="radio" name="q6" value="FALSE"> FALSE</label>
                                     <label class="tf-option"><input type="radio" name="q6" value="NOT GIVEN"> NOT GIVEN</label>
                                 </div>
                             </div>
+                            <div class="tf-question" data-q-start="7" data-q-end="7">
+                                <div class="tf-question-line"><span class="tf-question-number">7</span><span class="tf-question-text">The um buried in Efate site was plain as it was without any decoration.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q7" value="TRUE"> TRUE</label>
+                                    <label class="tf-option"><input type="radio" name="q7" value="FALSE"> FALSE</label>
+                                    <label class="tf-option"><input type="radio" name="q7" value="NOT GIVEN"> NOT GIVEN</label>
                                 </div>
+                            </div>
+                        </div>
 
-                        <div class="question" data-q-start="7" data-q-end="13">
+                        <div class="question" data-q-start="8" data-q-end="10">
                             <div class="question-prompt">
-                                <p><strong>Questions 7-13</strong></p>
+                                <p><strong>Questions 8–10</strong></p>
                                 <p>Complete the summary. Write <strong>NO MORE THAN TWO WORDS</strong> from the text for each answer.</p>
                             </div>
+                            <div class="summary-text" style="border: 1px solid #000; padding: 10px; ">
+                                <p><strong>Scientific Evident found in Efate site</strong></p>
+                                <p>Tests show the human remains and the charcoal found in the buried um are from the start of the Lapita period. Yet The <input type="text" class="answer-input" id="q8" placeholder="8"> covering many of the Efate sites did not come from that area. Then examinations carried out on the <input type="text" class="answer-input" id="q9" placeholder="9"> discovered at Efate site reveal that not everyone buried there was a native living in the area. In fact, DNA could identify the Lapita's nearest <input type="text" class="answer-input" id="q10" placeholder="10"> present-days.</p>
+                            </div>
+                        </div>
+
+                        <div class="question" data-q-start="11" data-q-end="13">
+                            <div class="question-prompt">
+                                <p><strong>Questions 11–13</strong></p>
+                                <p>Answer the questions below. Write <strong>NO MORE THAN THREE WORDS AND/OR A NUMBER</strong> from the text for each answer.</p>
+                            </div>
                             <div class="summary-text">
-                                <p>Dr Olsen and his colleagues applied a phenomenon named <input type="text" class="answer-input" id="q7" placeholder="7"> to explain the large size of the Eubrontes, which is a similar case to that nowadays reptiles invade a place where there are no <input type="text" class="answer-input" id="q8" placeholder="8">; for example, on an island called Komodo, indigenous huge lizards grow so big that people even regarding them as <input type="text" class="answer-input" id="q9" placeholder="9">.</p>
-                                <p>However, there were no old impact trace being found? The answer may be that we have <input type="text" class="answer-input" id="q10" placeholder="10"> the evidence. Old craters are difficult to spot or it probably <input type="text" class="answer-input" id="q11" placeholder="11"> due to the effect of the earth moving. Even a crater formed in Ocean had been <input type="text" class="answer-input" id="q12" placeholder="12"> under the impact of crust movement. Besides, the third hypothesis is that the potential evidence – some craters maybe <input type="text" class="answer-input" id="q13" placeholder="13">.</p>
+                                <p><strong>11.</strong> What did the Lapita travel in when they crossed the oceans? <input type="text" class="answer-input" id="q11" placeholder="11"></p>
+                                
+                                
+                                <p><strong>12.</strong> In Irwins's view, what would the Lapita have relied on to bring them fast back to the base? <input type="text" class="answer-input" id="q12" placeholder="12"></p>
+                                
+                                
+                                <p><strong>13.</strong> Which sea creatures would have been an indication to the Lapita of where to find land? <input type="text" class="answer-input" id="q13" placeholder="13"></p>
+                               
+                            </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 <div id="questions-2" class="question-set hidden">
                     <div class="questions-container">
                         <div class="question" data-q-start="14" data-q-end="18">
                             <div class="question-prompt">
-                                <p><strong>Questions 14-18</strong></p>
-                                <p>The text has eight paragraphs. Which paragraph contains the following information?</p>
+                                <p><strong>Questions 14–18</strong></p>
+                                <p>Use the information in the passage to match the people (listed A-C) with opinions or deeds below.</p>
+                                <p><strong>NB</strong> <em>You may use any letter more than once</em></p>
+                                <div style="margin-top: 8px;">
+                                    <p><strong>List of People</strong></p>
+                                    <p><strong>A</strong> Rachel Herz<br> <strong>B</strong> Simon Chu<br> <strong>C</strong> Jay Gottfried</p>
+                                </div>
                             </div>
-                            <div class="matching-form-container">
-                                <div class="matching-form-row">
-                                    <span class="matching-form-label"><strong>14.</strong> Art connected with architecture for the first time.</span>
-                                    <select class="answer-input" id="q14">
-                                        <option value="">Select</option>
-                                        <option value="A">A</option>
-                                        <option value="B">B</option>
-                                        <option value="C">C</option>
-                                        <option value="D">D</option>
-                                        <option value="E">E</option>
-                                        <option value="F">F</option>
-                                        <option value="G">G</option>
-                                        <option value="H">H</option>
-                                    </select>
-                                </div>
-                                <div class="matching-form-row">
-                                    <span class="matching-form-label"><strong>15.</strong> small artistic object and constructions built are put together</span>
-                                    <select class="answer-input" id="q15">
-                                        <option value="">Select</option>
-                                        <option value="A">A</option>
-                                        <option value="B">B</option>
-                                        <option value="C">C</option>
-                                        <option value="D">D</option>
-                                        <option value="E">E</option>
-                                        <option value="F">F</option>
-                                        <option value="G">G</option>
-                                        <option value="H">H</option>
-                                    </select>
-                                </div>
-                                <div class="matching-form-row">
-                                    <span class="matching-form-label"><strong>16.</strong> the working condition were recorded by the artist as an exciting subject.</span>
-                                    <select class="answer-input" id="q16">
-                                        <option value="">Select</option>
-                                        <option value="A">A</option>
-                                        <option value="B">B</option>
-                                        <option value="C">C</option>
-                                        <option value="D">D</option>
-                                        <option value="E">E</option>
-                                        <option value="F">F</option>
-                                        <option value="G">G</option>
-                                        <option value="H">H</option>
-                                    </select>
-                                </div>
-                                <div class="matching-form-row">
-                                    <span class="matching-form-label"><strong>17.</strong> mention of one engineers' artistic work on an unfinished engineering project</span>
-                                    <select class="answer-input" id="q17">
-                                        <option value="">Select</option>
-                                        <option value="A">A</option>
-                                        <option value="B">B</option>
-                                        <option value="C">C</option>
-                                        <option value="D">D</option>
-                                        <option value="E">E</option>
-                                        <option value="F">F</option>
-                                        <option value="G">G</option>
-                                        <option value="H">H</option>
-                                    </select>
-                                </div>
-                                <div class="matching-form-row">
-                                    <span class="matching-form-label"><strong>18.</strong> Two examples of famous bridges which became the iconic symbols of those cities</span>
-                                    <select class="answer-input" id="q18">
-                                        <option value="">Select</option>
-                                        <option value="A">A</option>
-                                        <option value="B">B</option>
-                                        <option value="C">C</option>
-                                        <option value="D">D</option>
-                                        <option value="E">E</option>
-                                        <option value="F">F</option>
-                                        <option value="G">G</option>
-                                        <option value="H">H</option>
-                                    </select>
-                                </div>
+                            <div class="table-container">
+                                <table class="matching-table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>A</th>
+                                            <th>B</th>
+                                            <th>C</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="statement">14. The found pattern of different sensory memories stored in various zones of the brain.</td>
+                                            <td class="clickable-cell" data-question="14" data-value="A" onclick="selectCell(this, 14, 'A')"></td>
+                                            <td class="clickable-cell" data-question="14" data-value="B" onclick="selectCell(this, 14, 'B')"></td>
+                                            <td class="clickable-cell" data-question="14" data-value="C" onclick="selectCell(this, 14, 'C')"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="statement">15. The smell brings detailed event under the smell of a certain substance.</td>
+                                            <td class="clickable-cell" data-question="15" data-value="A" onclick="selectCell(this, 15, 'A')"></td>
+                                            <td class="clickable-cell" data-question="15" data-value="B" onclick="selectCell(this, 15, 'B')"></td>
+                                            <td class="clickable-cell" data-question="15" data-value="C" onclick="selectCell(this, 15, 'C')"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="statement">16. Connection of smell and certain zones of the brain is different from that of other senses.</td>
+                                            <td class="clickable-cell" data-question="16" data-value="A" onclick="selectCell(this, 16, 'A')"></td>
+                                            <td class="clickable-cell" data-question="16" data-value="B" onclick="selectCell(this, 16, 'B')"></td>
+                                            <td class="clickable-cell" data-question="16" data-value="C" onclick="selectCell(this, 16, 'C')"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="statement">17. Diverse locations of stored information help us keep away the hazard.</td>
+                                            <td class="clickable-cell" data-question="17" data-value="A" onclick="selectCell(this, 17, 'A')"></td>
+                                            <td class="clickable-cell" data-question="17" data-value="B" onclick="selectCell(this, 17, 'B')"></td>
+                                            <td class="clickable-cell" data-question="17" data-value="C" onclick="selectCell(this, 17, 'C')"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="statement">18. There is no necessary correlation between smell and processing zone of the brain.</td>
+                                            <td class="clickable-cell" data-question="18" data-value="A" onclick="selectCell(this, 18, 'A')"></td>
+                                            <td class="clickable-cell" data-question="18" data-value="B" onclick="selectCell(this, 18, 'B')"></td>
+                                            <td class="clickable-cell" data-question="18" data-value="C" onclick="selectCell(this, 18, 'C')"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 
-                        <div class="question" data-q-start="19" data-q-end="23">
+                        <div class="question" data-q-start="19" data-q-end="22">
                             <div class="question-prompt">
-                                <p><strong>Questions 19-23</strong></p>
-                                <p>Drag the correct person (A-F) to each description.</p>
+                                <p><strong>Questions 19–22</strong></p>
+                                <p>Choose the correct answer.</p>
                             </div>
-                            <div class="drag-drop-container" style="flex-direction: column; gap: 16px;">
-                                <div class="matching-questions">
-                                    <div class="matching-question-item" data-q-start="19">
-                                        <span><strong>19.</strong> who made a comment that concrete constructions have a beauty just as artistic processes created by engineers the architects</span>
-                                        <div class="drop-zone" data-dnd-group="p2-19-23" data-q-start="19"></div>
-                                    </div>
-                                    <div class="matching-question-item" data-q-start="20">
-                                        <span><strong>20.</strong> who made a romantic depiction of an old bridge in one painting</span>
-                                        <div class="drop-zone" data-dnd-group="p2-19-23" data-q-start="20"></div>
-                                    </div>
-                                    <div class="matching-question-item" data-q-start="21">
-                                        <span><strong>21.</strong> who produced art pieces demonstrating the courage of workers in the site</span>
-                                        <div class="drop-zone" data-dnd-group="p2-19-23" data-q-start="21"></div>
-                                    </div>
-                                    <div class="matching-question-item" data-q-start="22">
-                                        <span><strong>22.</strong> who produced portraits involving subjects in engineers and inventions and historical human heroes</span>
-                                        <div class="drop-zone" data-dnd-group="p2-19-23" data-q-start="22"></div>
-                                    </div>
-                                    <div class="matching-question-item" data-q-start="23">
-                                        <span><strong>23.</strong> who produced a painting of factories and named them ambitiously</span>
-                                        <div class="drop-zone" data-dnd-group="p2-19-23" data-q-start="23"></div>
-                                    </div>
+                            <div class="multi-choice-question" data-q-start="19" data-q-end="19">
+                                <div class="question-prompt">
+                                    <p><strong>19.</strong> In paragraph B, what do the experiments conducted by Herz and other scientists show?</p>
                                 </div>
-                                <div class="drag-options-container" data-dnd-group="p2-19-23">
-                                    <div class="drag-item" draggable="true" data-dnd-group="p2-19-23" data-value="A"><strong>A</strong> – Charles Sheeler</div>
-                                    <div class="drag-item" draggable="true" data-dnd-group="p2-19-23" data-value="B"><strong>B</strong> – Michael Rooker</div>
-                                    <div class="drag-item" draggable="true" data-dnd-group="p2-19-23" data-value="C"><strong>C</strong> – Claude Monet</div>
-                                    <div class="drag-item" draggable="true" data-dnd-group="p2-19-23" data-value="D"><strong>D</strong> – Christian Schussele</div>
-                                    <div class="drag-item" draggable="true" data-dnd-group="p2-19-23" data-value="E"><strong>E</strong> – Joseph Pennell</div>
-                                    <div class="drag-item" draggable="true" data-dnd-group="p2-19-23" data-value="F"><strong>F</strong> – Lewis Hine</div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q19" value="A"> Women are more easily addicted to opium medicine</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q19" value="B"> Smell is superior to other senses in connection to the brain</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q19" value="C"> Smell is more important than other senses</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q19" value="D"> certain part of the brain relates the emotion to the sense of smell</label></div>
+                            </div>
+                            <div class="multi-choice-question" data-q-start="20" data-q-end="20">
+                                <div class="question-prompt">
+                                    <p><strong>20.</strong> What does the second experiment conducted by Herz suggest?</p>
                                 </div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q20" value="A"> Result directly conflicts with the first one</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q20" value="B"> Result of her first experiment is correct</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q20" value="C"> Sights and sounds trigger memories at an equal level</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q20" value="D"> Lawnmower is a perfect example in the experiment</label></div>
+                            </div>
+                            <div class="multi-choice-question" data-q-start="21" data-q-end="21">
+                                <div class="question-prompt">
+                                    <p><strong>21.</strong> What is the outcome of an experiment conducted by Chu and Downes?</p>
+                                </div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q21" value="A"> smell is the only functional under Chinese tradition</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q21" value="B"> half of the volunteers told detailed stories</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q21" value="C"> smells of certain odours assist storytellers</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q21" value="D"> odours of cinnamon are stronger than that of coffee</label></div>
+                            </div>
+                            <div class="multi-choice-question" data-q-start="22" data-q-end="22">
+                                <div class="question-prompt">
+                                    <p><strong>22.</strong> What is the comment of Jellinek to Chu and Downes in the issue of Chemical Senses:</p>
+                                </div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q22" value="A"> Jellinek accused their experiment of being unscientific</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q22" value="B"> Jellinek thought Liverpool is not a suitable place for experiment</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q22" value="C"> Jellinke suggested that there was no further clue of what specific memories aroused</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q22" value="D"> Jellinek stated that the experiment could be remedied</label></div>
                             </div>
                         </div>
 
-                        <div class="question" data-q-start="24" data-q-end="26">
+                        <div class="question" data-q-start="23" data-q-end="26">
                             <div class="question-prompt">
-                                <p><strong>Questions 24-26</strong></p>
-                                <p>Complete the summary. Write <strong>NO MORE THAN THREE WORDS</strong> from the text for each answer.</p>
+                                <p><strong>Questions 23–26</strong></p>
+                                <p>Complete the notes. Write <strong>NO MORE THAN THREE WORDS</strong> from the text for each answer.</p>
                             </div>
                             <div class="summary-text">
-                                <p><strong>Iron bridge Coalbrookdale, England</strong></p>
-                                <p>In the late eighteenth century, as artists began to capture the artistic attractiveness incorporated into architecture via engineering and technology were captured in numerous serene landscape paintings. One good example, the engineer called <input type="text" class="answer-input" id="q24" placeholder="24"> had designed the first iron bridge in the world and changed to using irons yet earlier bridges in the countryside were constructed using materials such as <input type="text" class="answer-input" id="q25" placeholder="25"> and wood. This first Iron bridge which across the <input type="text" class="answer-input" id="q26" placeholder="26"> was much significant in the industrial revolution period and it functioned for centuries.</p>
+                                <p>In the experiments conducted by UCL, participants were asked to look at a picture with the scent of a flower, then in the next stage, everyone would have to <input type="text" class="answer-input" id="q23" placeholder="23"> for a connection. A method called <input type="text" class="answer-input" id="q24" placeholder="24"> suggested that specific area of the brain named <input type="text" class="answer-input" id="q25" placeholder="25"> were quite active. Then in another paralleled experiment about Chinese elders, storytellers could recall detailed anecdotes when smelling a bowl of <input type="text" class="answer-input" id="q26" placeholder="26"> or incense around.</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div id="questions-3" class="question-set hidden">
                     <div class="questions-container">
-                        <div class="question" data-q-start="27" data-q-end="31">
+                        <div class="question" data-q-start="27" data-q-end="34">
                             <div class="question-prompt">
-                                <p><strong>Questions 27-31</strong></p>
-                                <p>Complete the summary with the list of words A-L below</p>
-                                </div>
-                            <div class="summary-text">
-                                <p>The question, arisen from Captain Cook's expedition to Hawaii, and others derived from it, has fascinated researchers for a long time. However, a surprising archaeological find on Éfaté began to provide valuable information about the <span class="summary-drop-zone" data-dnd-group="p3-27-31" data-question="27"></span> of Lapita. On the excavating site, a <span class="summary-drop-zone" data-dnd-group="p3-27-31" data-question="28"></span> containing <span class="summary-drop-zone" data-dnd-group="p3-27-31" data-question="29"></span> of Lapita was uncovered. Later on, various researches and tests have been done to study the ancient people – Lapita and their <span class="summary-drop-zone" data-dnd-group="p3-27-31" data-question="30"></span>. How could they manage to spread themselves so far over the vast ocean? All that is certain is that they were good at canoeing. And perhaps they could take well advantage of the trade wind. But there is no <span class="summary-drop-zone" data-dnd-group="p3-27-31" data-question="31"></span> of it.</p>
+                                <p><strong>Questions 27–34</strong></p>
+                                <p>The text has eight sections. Choose the correct heading for each section and move it into the gap. </p>
+                               
                             </div>
-                            <div class="summary-options-bank" data-dnd-group="p3-27-31">
-                                <div class="drag-item" draggable="true" data-dnd-group="p3-27-31" data-value="A">A - bones</div>
-                                <div class="drag-item" draggable="true" data-dnd-group="p3-27-31" data-value="B">B - co-leader</div>
-                                <div class="drag-item" draggable="true" data-dnd-group="p3-27-31" data-value="C">C - descendents</div>
-                                <div class="drag-item" draggable="true" data-dnd-group="p3-27-31" data-value="D">D - international team</div>
-                                <div class="drag-item" draggable="true" data-dnd-group="p3-27-31" data-value="E">E - inquiring minds</div>
-                                <div class="drag-item" draggable="true" data-dnd-group="p3-27-31" data-value="F">F - proof</div>
-                                <div class="drag-item" draggable="true" data-dnd-group="p3-27-31" data-value="G">G - ancestors</div>
-                                <div class="drag-item" draggable="true" data-dnd-group="p3-27-31" data-value="H">H - early seafarers</div>
-                                <div class="drag-item" draggable="true" data-dnd-group="p3-27-31" data-value="I">I - pottery</div>
-                                <div class="drag-item" draggable="true" data-dnd-group="p3-27-31" data-value="J">J - assumption</div>
-                                <div class="drag-item" draggable="true" data-dnd-group="p3-27-31" data-value="K">K - horizons</div>
-                                <div class="drag-item" draggable="true" data-dnd-group="p3-27-31" data-value="L">L - grave</div>
+                            <div class="drag-options-container">
+                                <p><strong>List of Headings:</strong></p>
+                                <div class="drag-item" data-value="i" draggable="true">i. Different personality types mentioned</div>
+                                <div class="drag-item" data-value="ii" draggable="true">ii. recommendation of combined styles for group</div>
+                                <div class="drag-item" data-value="iii" draggable="true">iii. Historical explanation of understanding personality</div>
+                                <div class="drag-item" data-value="iv" draggable="true">iv. A lively and positive attitude person depicted</div>
+                                <div class="drag-item" data-value="v" draggable="true">v. A personality likes a challenge and direct communication</div>
+                                <div class="drag-item" data-value="vi" draggable="true">vi. different characters illustrated</div>
+                                <div class="drag-item" data-value="vii" draggable="true">vii. Functions of understanding communication styles</div>
+                                <div class="drag-item" data-value="viii" draggable="true">viii. Cautious and considerable person cited</div>
+                                <div class="drag-item" data-value="ix" draggable="true">ix. Calm and Factual personality illustrated</div>
+                                <div class="drag-item" data-value="x" draggable="true">x. Self-assessment determines one's temperament</div>
                             </div>
+                            
                         </div>
 
-                        <div class="question" data-q-start="32" data-q-end="35">
+                        <div class="question" data-q-start="35" data-q-end="39">
                             <div class="question-prompt">
-                                <p><strong>Questions 32-35</strong></p>
-                                <p>Choose the correct answer.</p>
-                            </div>
-                            <div class="multi-choice-question" data-q-start="32" data-q-end="32">
-                                <div class="question-prompt"><p><strong>32</strong> The chemical tests indicate that</p></div>
-                                <div class="multi-choice-option"><label><input type="radio" name="q32" value="A"> the elements in one's teeth varied from childhood to adulthood.</label></div>
-                                <div class="multi-choice-option"><label><input type="radio" name="q32" value="B"> the isotope signatures of the elements remain the same in different places.</label></div>
-                                <div class="multi-choice-option"><label><input type="radio" name="q32" value="C"> the result of the study is not fascinating.</label></div>
-                                <div class="multi-choice-option"><label><input type="radio" name="q32" value="D"> these chemicals can't conceal one's origin.</label></div>
-                            </div>
-                            <div class="multi-choice-question" data-q-start="33" data-q-end="33">
-                                <div class="question-prompt"><p><strong>33</strong> The isotope analysis from the Lapita</p></div>
-                                <div class="multi-choice-option"><label><input type="radio" name="q33" value="A"> exactly locates their birth island.</label></div>
-                                <div class="multi-choice-option"><label><input type="radio" name="q33" value="B"> reveals that the Lapita found the new place via straits.</label></div>
-                                <div class="multi-choice-option"><label><input type="radio" name="q33" value="C"> helps researchers to find out answers about the islanders.</label></div>
-                                <div class="multi-choice-option"><label><input type="radio" name="q33" value="D"> leaves more new questions for anthropologists to answer.</label></div>
-                            </div>
-                            <div class="multi-choice-question" data-q-start="34" data-q-end="34">
-                                <div class="question-prompt"><p><strong>34</strong> According to paragraph F, the offspring of Lapita</p></div>
-                                <div class="multi-choice-option"><label><input type="radio" name="q34" value="A"> were capable of voyages to land that is not accessible to view.</label></div>
-                                <div class="multi-choice-option"><label><input type="radio" name="q34" value="B"> were able to have the farthest voyage of 230 miles.</label></div>
-                                <div class="multi-choice-option"><label><input type="radio" name="q34" value="C"> worked their way through the archipelagoes of the western Pacific.</label></div>
-                                <div class="multi-choice-option"><label><input type="radio" name="q34" value="D"> fully explored the horizons.</label></div>
-                            </div>
-                            <div class="multi-choice-question" data-q-start="35" data-q-end="35">
-                                <div class="question-prompt"><p><strong>35</strong> Once out exploring the sea, the sailors</p></div>
-                                <div class="multi-choice-option"><label><input type="radio" name="q35" value="A"> always found the trade winds unsuitable for sailing.</label></div>
-                                <div class="multi-choice-option"><label><input type="radio" name="q35" value="B"> could return home with various clues.</label></div>
-                                <div class="multi-choice-option"><label><input type="radio" name="q35" value="C"> sometimes would overshoot their home port and sail off into eternity.</label></div>
-                                <div class="multi-choice-option"><label><input type="radio" name="q35" value="D"> would sail in one direction.</label></div>
-                            </div>
-                            </div>
-
-                        <div class="question" data-q-start="36" data-q-end="40">
-                            <div class="question-prompt">
-                                <p><strong>Questions 36-40</strong></p>
-                                <p>Do the following statements agree with the information given in Reading Passage 3?</p>
+                                <p><strong>Questions 35–39</strong></p>
+                                <p>Do the following statements agree with the information given in Reading Passage 3</p>
                                 <ul style="list-style: none; padding-left: 0;">
                                     <li><strong>TRUE</strong> if the statement is true</li>
                                     <li><strong>FALSE</strong> if the statement is false</li>
                                     <li><strong>NOT GIVEN</strong> if the information is not given in the passage</li>
                                 </ul>
                             </div>
+                            <div class="tf-question" data-q-start="35" data-q-end="35">
+                                <div class="tf-question-line"><span class="tf-question-number">35</span><span class="tf-question-text">it is believed that sanguine people do not like variety</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q35" value="TRUE"> TRUE</label>
+                                    <label class="tf-option"><input type="radio" name="q35" value="FALSE"> FALSE</label>
+                                    <label class="tf-option"><input type="radio" name="q35" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
                             <div class="tf-question" data-q-start="36" data-q-end="36">
-                                <div class="tf-question-line"><span class="tf-question-number">36</span><span class="tf-question-text">The Lapita could canoe in the prevailing wind.</span></div>
+                                <div class="tf-question-line"><span class="tf-question-number">36</span><span class="tf-question-text">Melancholic and phlegmatic people have similar characteristics</span></div>
                                 <div class="tf-options">
                                     <label class="tf-option"><input type="radio" name="q36" value="TRUE"> TRUE</label>
                                     <label class="tf-option"><input type="radio" name="q36" value="FALSE"> FALSE</label>
                                     <label class="tf-option"><input type="radio" name="q36" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
                             </div>
-                        </div>
                             <div class="tf-question" data-q-start="37" data-q-end="37">
-                                <div class="tf-question-line"><span class="tf-question-number">37</span><span class="tf-question-text">It was difficult for the sailors to find ways back, once they were out.</span></div>
+                                <div class="tf-question-line"><span class="tf-question-number">37</span><span class="tf-question-text">It is the sanguine personality that needed most in the workplace.</span></div>
                                 <div class="tf-options">
                                     <label class="tf-option"><input type="radio" name="q37" value="TRUE"> TRUE</label>
                                     <label class="tf-option"><input type="radio" name="q37" value="FALSE"> FALSE</label>
                                     <label class="tf-option"><input type="radio" name="q37" value="NOT GIVEN"> NOT GIVEN</label>
-                            </div>
+                                </div>
                             </div>
                             <div class="tf-question" data-q-start="38" data-q-end="38">
-                                <div class="tf-question-line"><span class="tf-question-number">38</span><span class="tf-question-text">The reason why the Lapita stopped canoeing farther is still unknown.</span></div>
+                                <div class="tf-question-line"><span class="tf-question-number">38</span><span class="tf-question-text">It is possible for someone to change a type of personality.</span></div>
                                 <div class="tf-options">
                                     <label class="tf-option"><input type="radio" name="q38" value="TRUE"> TRUE</label>
                                     <label class="tf-option"><input type="radio" name="q38" value="FALSE"> FALSE</label>
                                     <label class="tf-option"><input type="radio" name="q38" value="NOT GIVEN"> NOT GIVEN</label>
-                        </div>
-                    </div>
+                                </div>
+                            </div>
                             <div class="tf-question" data-q-start="39" data-q-end="39">
-                                <div class="tf-question-line"><span class="tf-question-number">39</span><span class="tf-question-text">The majority of the Lapita dwelled on Fiji.</span></div>
+                                <div class="tf-question-line"><span class="tf-question-number">39</span><span class="tf-question-text">work surrounding can affect which communication style is the most effective.</span></div>
                                 <div class="tf-options">
                                     <label class="tf-option"><input type="radio" name="q39" value="TRUE"> TRUE</label>
                                     <label class="tf-option"><input type="radio" name="q39" value="FALSE"> FALSE</label>
                                     <label class="tf-option"><input type="radio" name="q39" value="NOT GIVEN"> NOT GIVEN</label>
                                 </div>
                             </div>
-                            <div class="tf-question" data-q-start="40" data-q-end="40">
-                                <div class="tf-question-line"><span class="tf-question-number">40</span><span class="tf-question-text">The navigators could take advantage of El Nino during their forth voyages.</span></div>
-                                <div class="tf-options">
-                                    <label class="tf-option"><input type="radio" name="q40" value="TRUE"> TRUE</label>
-                                    <label class="tf-option"><input type="radio" name="q40" value="FALSE"> FALSE</label>
-                                    <label class="tf-option"><input type="radio" name="q40" value="NOT GIVEN"> NOT GIVEN</label>
                                 </div>
+
+                        <div class="question" data-q-start="40" data-q-end="40">
+                            <div class="question-prompt">
+                                <p><strong>Question 40</strong></p>
+                                <p>Choose the correct answer.</p>
+                            </div>
+                            <div class="multi-choice-question" data-q-start="40" data-q-end="40">
+                                <div class="question-prompt">
+                                    <p><strong>40.</strong> The author thinks self-assessment tools can be able to</p>
+                                </div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q40" value="A"> assist to develop one's personality in a certain scenario.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q40" value="B"> help to understand colleagues and resolve problems</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q40" value="C"> improve the relationship with the boss of the company</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q40" value="D"> change others behaviour and personality</label></div>
                             </div>
                         </div>
                     </div>
@@ -2250,49 +2569,49 @@
 
         // --- ANSWERS ---
         const correctAnswers = {
-            // Part 1 (1-13)
-            '1': 'YES',
-            '2': 'NOT GIVEN',
-            '3': 'YES',
+            // Part 1 (1-13) - Voyage of Going: beyond the blue line 2
+            '1': 'TRUE',
+            '2': 'FALSE',
+            '3': 'FALSE',
             '4': 'NOT GIVEN',
-            '5': 'NO',
-            '6': 'NO',
-            '7': 'ecological release',
-            '8': 'competitors',
-            '9': 'dragons',
-            '10': 'overlooked',
-            '11': ['vanished', 'have vanished'],
-            '12': 'swallowed up',
-            '13': 'misdated',
-            // Part 2 (14-26)
-            '14': 'C',
-            '15': 'E',
-            '16': 'B',
-            '17': 'F',
-            '18': 'A',
-            '19': 'E',
+            '5': 'TRUE',
+            '6': 'NOT GIVEN',
+            '7': 'FALSE',
+            '8': 'rock',
+            '9': 'teeth',
+            '10': 'descendants',
+            '11': 'canoes',
+            '12': 'trade winds',
+            '13': 'seabirds and turtles',
+            // Part 2 (14-26) - Smell and Memory
+            '14': 'A',
+            '15': 'B',
+            '16': 'A',
+            '17': 'C',
+            '18': 'C',
+            '19': 'D',
             '20': 'B',
-            '21': 'F',
-            '22': 'D',
-            '23': 'A',
-            '24': 'Abraham Darby III',
-            '25': 'stone',
-            '26': 'river',
-            // Part 3 (27-40)
-            '27': 'H',
-            '28': 'L',
-            '29': 'A',
-            '30': 'C',
-            '31': 'F',
-            '32': 'D',
-            '33': 'C',
-            '34': 'A',
-            '35': 'B',
+            '21': 'C',
+            '22': 'C',
+            '23': 'create a story',
+            '24': 'brain scans',
+            '25': 'olfactory cortex',
+            '26': 'spice',
+            // Part 3 (27-40) - Communicating Conflict!
+            '27': 'iii',
+            '28': 'vii',
+            '29': 'i',
+            '30': 'iv',
+            '31': 'ix',
+            '32': 'viii',
+            '33': 'v',
+            '34': 'ii',
+            '35': 'FALSE',
             '36': 'TRUE',
-            '37': 'FALSE',
+            '37': 'NOT GIVEN',
             '38': 'TRUE',
-            '39': 'FALSE',
-            '40': 'NOT GIVEN'
+            '39': 'TRUE',
+            '40': 'B'
         };
 
         // --- INITIALIZATION ---
@@ -2410,50 +2729,6 @@
 
             resizer.addEventListener('mousedown', initResize, false);
             initializeContextMenu();
-
-            // Ensure indicators (answered states, counts) are correct on initial load
-            updateAllIndicators();
-
-            // Ensure the bottom menu reflects the currently focused input as active
-            // 1) For text/select inputs with ids like q<number>
-            document.querySelectorAll('.answer-input').forEach(inputEl => {
-                const attach = (evtName) => inputEl.addEventListener(evtName, (e) => {
-                    const id = inputEl.id || '';
-                    if (id.startsWith('q')) {
-                        const qNum = parseInt(id.replace('q',''), 10);
-                        if (!isNaN(qNum)) {
-                            goToQuestion(qNum);
-                        }
-                    } else {
-                        // Fallback: find nearest container with data-q-start
-                        const container = inputEl.closest('[data-q-start]');
-                        if (container) {
-                            const qNum = parseInt(container.dataset.qStart, 10);
-                            if (!isNaN(qNum)) goToQuestion(qNum);
-                        }
-                    }
-                });
-                attach('focus');
-                attach('click');
-                attach('input');
-                attach('change');
-            });
-
-            // 2) For radio buttons (TF/NG and MCQ)
-            document.querySelectorAll('input[type="radio"]').forEach(radioEl => {
-                const update = () => {
-                    const name = radioEl.name || '';
-                    if (name.startsWith('q')) {
-                        const qNum = parseInt(name.replace('q',''), 10);
-                        if (!isNaN(qNum)) {
-                            goToQuestion(qNum);
-                        }
-                    }
-                };
-                radioEl.addEventListener('focus', update);
-                radioEl.addEventListener('change', update);
-                radioEl.addEventListener('click', update);
-            });
         }
 
         // --- CORE TEST LOGIC ---
@@ -2492,6 +2767,7 @@
             });
             document.querySelectorAll('.correct-answer-display').forEach(el => el.remove());
 
+
             for (let i = 1; i <= totalQuestions; i++) {
                 const questionKey = String(i);
                 const correctAnswer = correctAnswers[questionKey];
@@ -2500,6 +2776,8 @@
                 
                 let userAnswerDisplay = 'Not Answered';
                 const correctAnswerText = Array.isArray(correctAnswer) ? correctAnswer.join(' / ') : correctAnswer;
+
+
 
                 const textInput = document.getElementById(`q${i}`);
                 const radioGroup = document.querySelectorAll(`input[name="q${i}"][type="radio"]`);
@@ -2579,38 +2857,6 @@
                         if (dropZone) {
                             dropZone.classList.add('incorrect');
                         }
-                        if (correctAnswer) {
-                            const correctAnswerSpan = document.createElement('span');
-                            correctAnswerSpan.className = 'correct-answer-display';
-                            correctAnswerSpan.innerHTML = `&nbsp;➜&nbsp;<span class="correct-answer-highlight">${correctAnswer}</span>`;
-                            dropZone.appendChild(correctAnswerSpan);
-                        }
-                    }
-                }
-                // Handle summary drag-and-drop questions (27-31) using summary-drop-zone
-                else if (document.querySelector(`.summary-drop-zone[data-question="${i}"]`)) {
-                    console.log(`🔍 Checking summary drag-and-drop question ${i}`);
-                    const dropZone = document.querySelector(`.summary-drop-zone[data-question="${i}"]`);
-                    const droppedItem = dropZone ? dropZone.querySelector('.drag-item') : null;
-                    const correctAnswer = correctAnswers[questionKey];
-
-                    if (droppedItem) {
-                        userAnswer = droppedItem.dataset.value;
-                        userAnswerDisplay = userAnswer;
-                        isCorrect = userAnswer === correctAnswer;
-
-                        dropZone.classList.add(isCorrect ? 'correct' : 'incorrect');
-                        if (isCorrect) {
-                            score++;
-                        } else if (correctAnswer) {
-                            const correctAnswerSpan = document.createElement('span');
-                            correctAnswerSpan.className = 'correct-answer-display';
-                            correctAnswerSpan.innerHTML = `&nbsp;➜&nbsp;<span class="correct-answer-highlight">${correctAnswer}</span>`;
-                            dropZone.appendChild(correctAnswerSpan);
-                        }
-                    } else {
-                        userAnswerDisplay = 'Not Answered';
-                        dropZone.classList.add('incorrect');
                         if (correctAnswer) {
                             const correctAnswerSpan = document.createElement('span');
                             correctAnswerSpan.className = 'correct-answer-display';
@@ -2769,11 +3015,10 @@
                  
                 // For showing results in the modal
                  const resultRow = `
-                    <div class="result-row ${isCorrect ? 'correct' : 'incorrect'}">
+                    <div class="result-row ${isCorrect ? '' : 'incorrect'}">
                         <span class="q-num">${i}</span>
                         <span class="user-ans">${userAnswerDisplay}</span>
                         <span class="correct-ans">${correctAnswerText}</span>
-                        <span class="status-badge ${isCorrect ? 'ok' : 'bad'}">${isCorrect ? 'Correct' : 'Incorrect'}</span>
                     </div>`;
                 resultsDetailsContainer.innerHTML += resultRow;
                 
@@ -2822,56 +3067,56 @@
         }
 
         function highlightCorrectAnswersInPassage() {
-            // Define highlights for Part 1 (The Dinosaurs Footprints and Extinction)
+            // Define the text passages and their corresponding question numbers for Part 1 (Voyage of Going: beyond the blue line 2)
             const part1Highlights = [
-                { question: 1, text: "That is the thesis proposed by Paul Olsen", answer: "YES" },
-                { question: 2, text: "the monsters depicted in the book and movie \"Jurassic Park\". (Actually, though, the dinosaurs that appeared on screen were from the still more recent Cretaceous period.)", answer: "NOT GIVEN" },
-                { question: 3, text: "Dinosaur skeletons are rare. Dinosaur footprints are, however, surprisingly abundant.", answer: "YES" },
-                { question: 4, text: "means that rocks from this place and period can be dated to within a few thousand years", answer: "NOT GIVEN" },
-                { question: 5, text: "ichnotaxa. These are recognizable types of the footprint that cannot be matched precisely with the species of animal that left them", answer: "NO" },
-                { question: 6, text: "Iridium is normally rare at the earth's surface, but it is more abundant in meteorites.", answer: "NO" },
-                { question: 7, text: "ecological release. This is seen today when reptiles", answer: "ecological release" },
-                { question: 8, text: "reach islands where they face no competitors.", answer: "competitors" },
-                { question: 9, text: "local lizards have grown so large that they are often referred to as dragons.", answer: "dragons" },
-                { question: 10, text: "It may, of course, have been overlooked.", answer: "overlooked" },
-                { question: 11, text: "Alternatively, it may have vanished.", answer: "vanished" },
-                { question: 12, text: "a crater that formed in the ocean would have been swallowed up by now.", answer: "swallowed up" },
-                { question: 13, text: "the crater is known, but has been misdated.", answer: "misdated" }
+                { question: 1, text: "greeted him in a familiar tongue, one he had heard on virtually every mote of inhabited land he had visited", answer: "TRUE" },
+                { question: 2, text: "he later wondered in his journal: \"How shall we account for this Nation spreading itself so far over this Vast ocean?\"", answer: "FALSE" },
+                { question: 3, text: "It came to light only by luck. A backhoe operator, digging up topsoil on the grounds of a derelict coconut plantation, scraped open a grave", answer: "FALSE" },
+                { question: 4, text: "Within the span of few centuries", answer: "NOT GIVEN" },
+                { question: 5, text: "discovering and colonizing scores of tropical islands never before seen by human eyes", answer: "TRUE" },
+                { question: 6, text: "six complete Lapita pots", answer: "NOT GIVEN" },
+                { question: 7, text: "peculiar style of pottery decoration, created by pressing a carved stamp into the clay", answer: "FALSE" },
+                { question: 8, text: "rock", answer: "rock" },
+                { question: 9, text: "teeth", answer: "teeth" },
+                { question: 10, text: "descendants", answer: "descendants" },
+                { question: 11, text: "canoes", answer: "canoes" },
+                { question: 12, text: "trade winds", answer: "trade winds" },
+                { question: 13, text: "seabirds and turtles", answer: "seabirds and turtles" }
             ];
 
-            // Define highlights for Part 2 (Art in Iron and Steel)
+            // Define the text passages and their corresponding question numbers for Part 2 (Smell and Memory)
             const part2Highlights = [
-                { question: 14, text: "the relationship between art and engineering has seldom been easy or consistent.", answer: "C" },
-                { question: 16, text: "Lewis Hine", answer: "B" },
-                { question: 17, text: "his etchings of the partially completed Hell Gate and Delaware River bridges.", answer: "F" },
-                { question: 18, text: "landmark megastructures such as the Brooklyn and Golden Gate bridges are almost universally hailed as majestic human achievements", answer: "A" },
-                { question: 19, text: "\"Great engineering is great art,\" a sentiment that he expressed repeatedly.", answer: "E" },
-                { question: 20, text: "the painter/photographer Charles Sheeler was chosen to photograph it", answer: "B" },
-                { question: 21, text: "put his own life at risk to capture workers suspended on cables hundreds of feet in the air", answer: "F" },
-                { question: 22, text: "produced portraits involving subjects in engineers and inventions and historical human heroes.", answer: "D" },
-                { question: 23, text: "giving them titles such as American Landscape and Classic Landscape.", answer: "A" },
-                { question: 24, text: "Abraham Darby III cast", answer: "Abraham Darby III" },
-                { question: 25, text: "a dramatic departure from the classic stone and timber bridges", answer: "stone" },
-                { question: 26, text: "still spans the river", answer: "river" },
-                { text: "One artist's bucolic depiction shows pedestrians and horsemen on the bridge" },
+                { question: 14, text: "people's sensory memory of events is spread across different brain regions… says UCL team leader, Jay Gottfried", answer: "C" },
+                { question: 15, text: "odours such as coffee and cinnamon could help them remember more detail in the story", answer: "B" },
+                { question: 16, text: "There is this unique connection between the sense of smell and the part of the brain that processes emotion,\" says Rachel Herz", answer: "A" },
+                { question: 17, text: "the sight of a lion might be enough to trigger the urge to flee… says Gottfried", answer: "C" },
+                { question: 18, text: "the olfactory cortex, which is known to be involved in processing smells", answer: "C" },
+                { question: 19, text: "The direct link between odours and the amygdala may help explain the emotional potency of smells", answer: "D" },
+                { question: 20, text: "Memories triggered by smell were more evocative than memories triggered by either sights or sounds", answer: "B" },
+                { question: 21, text: "odours such as coffee and cinnamon could help them remember more detail in the story", answer: "C" },
+                { question: 22, text: "Jellinek chided the Liverpool researchers for, among other things, presenting the smells and asking the volunteers to think of memories", answer: "C" },
+                { question: 23, text: "be asked to create a story linking the two", answer: "create a story" },
+                { question: 24, text: "Brain scans taken at the time revealed", answer: "brain scans" },
+                { question: 25, text: "the olfactory cortex lit up again", answer: "olfactory cortex" },
+                { question: 26, text: "a small pot of spice or incense around", answer: "spice" }
             ];
 
-            // Define highlights for Part 3 (Beyond the Blue Line)
+            // Define the text passages and their corresponding question numbers for Part 3 (Communicating Conflict!)
             const part3Highlights = [
-                { question: 27, text: "an ancient seafaring people, the distant ancestors of today’s Polynesians", answer: "H" },
-                { question: 28, text: "scraped open a grave – the first of dozens in a burial ground some 3,000 years old.", answer: "L" },
-                { question: 29, text: "harbors the bones of an ancient people archaeologists call the Lapita", answer: "A" },
-                { question: 30, text: "their descendants, centuries later, who became the great Polynesian navigators", answer: "C" },
-                { question: 31, text: "there's no proof that they could do any such thing", answer: "F" },
-                { question: 32, text: "DNA teased from these ancient bones may also help answer one of the most puzzling questions in Pacific anthropology", answer: "D" },
-                { question: 33, text: "At some point in their lives, these people left the villages of their birth and made a voyage by seagoing canoe, never to return.", answer: "C" },
-                { question: 34, text: "for at least 150 of those miles, the Lapita sailors would have been out of sight of land, with empty horizons on every side.", answer: "A" },
-                { question: 35, text: "secure in the knowledge that if they didn't find anything, they could turn about and catch a swift ride home on the trade winds.", answer: "B" },
-                { question: 36, text: "mastered the advanced art of tacking into the wind.", answer: "TRUE" },
-                { question: 37, text: "they could turn about and catch a swift ride home on the trade winds.", answer: "FALSE" },
-                { question: 38, text: "called it quits for reasons known only to them.", answer: "TRUE" },
-                { question: 39, text: "more than 300 in Fiji alone.", answer: "FALSE" },
-                { question: 40, text: "a series of unusually frequent El Niño around the time of the Lapita expansion", answer: "NOT GIVEN" }
+                { question: 27, text: "As far back as Hippocrates's time (460-370 B.C.), people have tried to understand other people by characterizing them according to personality type or temperament", answer: "iii" },
+                { question: 28, text: "understanding communication styles can help resolve conflict on teams", answer: "vii" },
+                { question: 29, text: "there were four basic temperaments: sanguine, phlegmatic, melancholic and choleric", answer: "i" },
+                { question: 30, text: "The sanguine person would be the expressive or spirited style of communication", answer: "iv" },
+                { question: 31, text: "The phlegmatic person – cool and persevering – translates into the technical or systematic communication style", answer: "ix" },
+                { question: 32, text: "The melancholic person who is softhearted and oriented toward doing things for others", answer: "viii" },
+                { question: 33, text: "The choleric temperament translates into the bold or direct style of communication", answer: "v" },
+                { question: 34, text: "A well-functioning team should have all of these communications styles for true effectiveness", answer: "ii" },
+                { question: 35, text: "it is believed that sanguine people do not like variety", answer: "FALSE" },
+                { question: 36, text: "Melancholic and phlegmatic people have similar characteristics", answer: "TRUE" },
+                { question: 37, text: "It is the sanguine personality that needed most in the workplace", answer: "NOT GIVEN" },
+                { question: 38, text: "It is possible for someone to change a type of personality", answer: "TRUE" },
+                { question: 39, text: "work surrounding can affect which communication style is the most effective", answer: "TRUE" },
+                { question: 40, text: "help to understand colleagues and resolve problems", answer: "B" }
             ];
 
             // Function to apply highlights to a passage
@@ -2894,8 +3139,15 @@
                         if (html.includes(item.text)) {
                             const escapeRegExp = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                             const re = new RegExp(escapeRegExp(item.text));
-                            const badge = (item.question !== undefined && item.question !== null && item.question !== '')
-                                ? `<span style="
+                            const replaced = html.replace(
+                                re,
+                                `<span class="answer-highlight" data-question="${item.question}" style="
+                                    background-color: #ffeb3b;
+                                    padding: 2px 4px;
+                                    border-radius: 3px;
+                                    font-weight: bold;
+                                    position: relative;
+                                ">${item.text}<span style="
                                     position: absolute;
                                     top: -8px;
                                     right: -8px;
@@ -2909,17 +3161,7 @@
                                     justify-content: center;
                                     font-size: 12px;
                                     font-weight: bold;
-                                ">${item.question}</span>`
-                                : '';
-                            const replaced = html.replace(
-                                re,
-                                `<span class="answer-highlight" data-question="${item.question || ''}" style="
-                                    background-color: #ffeb3b;
-                                    padding: 2px 4px;
-                                    border-radius: 3px;
-                                    font-weight: bold;
-                                    position: relative;
-                                ">${item.text}${badge}</span>`
+                                ">${item.question}</span></span>`
                             );
                             paragraph.innerHTML = replaced;
                         }
@@ -2927,15 +3169,15 @@
                 });
             }
 
-            // Apply highlights to Part 1 (The Green Revolution in China)
+            // Apply highlights to Part 1 (Voyage of Going: beyond the blue line 2)
             const passageText1 = document.getElementById('passage-text-1');
             applyHighlights(passageText1, part1Highlights);
 
-            // Apply highlights to Part 2 (Reclaiming the Night)
+            // Apply highlights to Part 2 (Smell and Memory)
             const passageText2 = document.getElementById('passage-text-2');
             applyHighlights(passageText2, part2Highlights);
 
-            // Apply highlights to Part 3 (Paper or Computer?)
+            // Apply highlights to Part 3 (Communicating Conflict!)
             const passageText3 = document.getElementById('passage-text-3');
             applyHighlights(passageText3, part3Highlights);
         }
@@ -3296,28 +3538,11 @@
             updateAnsweredNav();
         }
         
-        function updateAnsweredNav() {
+            function updateAnsweredNav() {
             const navButtons = document.querySelectorAll('.subQuestion');
             navButtons.forEach(btn => {
-                let qNum = NaN;
-                // Prefer parsing from onclick attribute to avoid SR-only text interference
-                const onclickAttr = btn.getAttribute('onclick');
-                if (onclickAttr) {
-                    const match = onclickAttr.match(/goToQuestion\((\d+)\)/);
-                    if (match) {
-                        qNum = parseInt(match[1], 10);
-                    }
-                }
-
-                // Fallback: try the visible number span
-                if (isNaN(qNum)) {
-                    const visibleSpan = btn.querySelector('span[aria-hidden="true"]');
-                    if (visibleSpan) {
-                        qNum = parseInt(visibleSpan.textContent.trim(), 10);
-                    }
-                }
-
-                if (!isNaN(qNum) && isQuestionAnswered(qNum)) {
+                const qNum = parseInt(btn.textContent, 10);
+                if (isQuestionAnswered(qNum)) {
                     btn.classList.add('answered');
                 } else {
                     btn.classList.remove('answered');
@@ -3325,7 +3550,7 @@
             });
         }
         
-        function isQuestionAnswered(qNum) {
+            function isQuestionAnswered(qNum) {
             const textInput = document.getElementById(`q${qNum}`);
             if (textInput && (textInput.value.trim() !== '' || (textInput.classList.contains('drop-zone') && textInput.children.length > 0))) {
                 return true;
@@ -3334,18 +3559,14 @@
             if (radio) {
                 return true;
             }
-            const checkbox = document.querySelector(`input[name="q${qNum}"]:checked`);
-            if (checkbox) {
-                return true;
+            // Special handling for the combined checkbox group (Q20 & Q21)
+            if (qNum === 20 || qNum === 21) {
+                const checked = document.querySelectorAll('input[name="q20-21"]:checked');
+                if (checked.length > 0) return true;
             }
             // Handle drag & drop questions (e.g., 20-23)
             const dz = document.querySelector(`.drop-zone[data-q-start="${qNum}"]`);
             if (dz && dz.querySelector('.drag-item')) {
-                return true;
-            }
-            // Handle summary drag & drop questions (27-31)
-            const sdz = document.querySelector(`.summary-drop-zone[data-question="${qNum}"]`);
-            if (sdz && sdz.querySelector('.drag-item')) {
                 return true;
             }
             // Handle clickable-cell matrix questions (any question using clickable cells)
@@ -3373,7 +3594,7 @@
                 item.addEventListener('dragend', handleDragEnd);
                 item.addEventListener('click', () => selectDragItem(item));
             });
-            document.querySelectorAll('.drop-zone, .summary-drop-zone, .drag-options-container').forEach(zone => {
+            document.querySelectorAll('.drop-zone, .drag-options-container').forEach(zone => {
                 zone.addEventListener('dragover', handleDragOver);
                 zone.addEventListener('dragleave', handleDragLeave);
                 zone.addEventListener('drop', handleDrop);
@@ -3414,11 +3635,12 @@
             const sourceZone = draggedItem.parentElement;
             if (sourceZone === targetZone) return; // Prevent dropping on itself
 
-            const isTargetAcceptingZone = targetZone.classList.contains('drop-zone') || targetZone.classList.contains('summary-drop-zone');
-            const existingItemInTarget = isTargetAcceptingZone ? targetZone.querySelector('.drag-item') : null;
+            const existingItemInTarget = targetZone.classList.contains('drop-zone') 
+                ? targetZone.querySelector('.drag-item') 
+                : null;
 
             // First, clear the target drop-zone of any text (like question numbers) before adding the new item.
-            if (targetZone.classList.contains('drop-zone') || targetZone.classList.contains('summary-drop-zone')) {
+            if (targetZone.classList.contains('drop-zone')) {
                 Array.from(targetZone.childNodes).forEach(node => {
                     if (node.nodeType === Node.TEXT_NODE) {
                         node.remove();
@@ -3448,10 +3670,6 @@
                  sourceZone.classList.remove('filled');
                  const qNum = sourceZone.dataset.qStart;
                  sourceZone.innerText = qNum; // Restore the question number
-            }
-            // Also handle summary drop-zones when emptied
-            if (sourceZone.classList.contains('summary-drop-zone') && !sourceZone.querySelector('.drag-item')) {
-                 sourceZone.classList.remove('filled');
             }
             
             updateAllIndicators();
@@ -3500,6 +3718,7 @@
         
         function setupCheckboxLimits() {
             const checkboxGroups = [
+                { name: 'q20-21', limit: 2 },
                 { name: 'q38-40', limit: 3 }
             ];
             checkboxGroups.forEach(group => {
@@ -3780,6 +3999,145 @@
 
         // Note: switchToPart function is defined earlier in the code
         // This duplicate function has been removed to prevent conflicts
+    });
+
+    // Mobile-specific improvements
+    function initializeMobileFeatures() {
+        // Add touch event listeners for mobile
+        if ('ontouchstart' in window) {
+            console.log('📱 Mobile device detected, initializing touch features');
+            
+            // Improve touch handling for question navigation
+            document.querySelectorAll('.subQuestion').forEach(btn => {
+                btn.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(0.95)';
+                }, { passive: false });
+                
+                btn.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1)';
+                }, { passive: false });
+            });
+            
+            // Improve touch handling for part navigation
+            document.querySelectorAll('.footer__questionNo___3WNct').forEach(btn => {
+                btn.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(0.95)';
+                }, { passive: false });
+                
+                btn.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1)';
+                }, { passive: false });
+            });
+            
+            // Improve touch handling for radio buttons
+            document.querySelectorAll('.tf-option, .multi-choice-option').forEach(option => {
+                option.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(0.98)';
+                }, { passive: false });
+                
+                option.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1)';
+                    // Trigger radio button selection
+                    const radio = this.querySelector('input[type="radio"]');
+                    if (radio) {
+                        radio.checked = true;
+                        radio.dispatchEvent(new Event('change'));
+                    }
+                }, { passive: false });
+            });
+            
+            // Improve touch handling for text inputs
+            document.querySelectorAll('input[type="text"], select').forEach(input => {
+                input.addEventListener('touchstart', function(e) {
+                    // Prevent zoom on iOS
+                    this.style.fontSize = '16px';
+                });
+            });
+            
+            // Improve touch handling for drag and drop on mobile
+            document.querySelectorAll('.drag-item').forEach(item => {
+                item.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1.1)';
+                    this.style.zIndex = '1000';
+                }, { passive: false });
+                
+                item.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1)';
+                    this.style.zIndex = 'auto';
+                }, { passive: false });
+            });
+            
+            // Improve touch handling for drop zones
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                zone.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1.05)';
+                    this.style.borderColor = '#4a90e2';
+                }, { passive: false });
+                
+                zone.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1)';
+                    this.style.borderColor = '#ccc';
+                }, { passive: false });
+            });
+            
+            // Improve touch handling for navigation arrows
+            document.querySelectorAll('.nav-arrow').forEach(arrow => {
+                arrow.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(0.9)';
+                }, { passive: false });
+                
+                arrow.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1)';
+                }, { passive: false });
+            });
+            
+            // Improve touch handling for check answers button
+            const deliverButton = document.getElementById('deliver-button');
+            if (deliverButton) {
+                deliverButton.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(0.95)';
+                }, { passive: false });
+                
+                deliverButton.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1)';
+                }, { passive: false });
+            }
+        }
+        
+        // Add mobile-specific scroll improvements
+        if (window.innerWidth <= 768) {
+            // Smooth scrolling for mobile
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Improve scroll performance on mobile
+            document.addEventListener('scroll', function() {
+                // Throttle scroll events for better performance
+                if (!window.scrollTimeout) {
+                    window.scrollTimeout = setTimeout(function() {
+                        window.scrollTimeout = null;
+                    }, 16); // ~60fps
+                }
+            });
+        }
+    }
+    
+    // Call mobile initialization after DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeMobileFeatures();
     });
     </script>
 </body>
